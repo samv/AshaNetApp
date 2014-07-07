@@ -4,12 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
-import com.parse.ParseObject;
-import com.parse.ParseQueryAdapter;
+import org.ashanet.adapter.ProjectListAdapter;
 
 public class ListProjectsActivity extends Activity
 {
-    private ParseQueryAdapter<ParseObject> adapter;
+    public ProjectListAdapter pla;
     private ListView lvProjects;
 
     /** Called when the activity is first created. */
@@ -19,14 +18,13 @@ public class ListProjectsActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_projects);
         Log.d("DEBUG", "Creating Parse Query Adapter");
-        adapter = new ParseQueryAdapter<ParseObject>
-            (this, "Project", android.R.layout.simple_list_item_1);
+        pla = new ProjectListAdapter(this);
         Log.d("DEBUG", "Setting text key");
-        adapter.setTextKey("name");
+        pla.setTextKey("name");
  
         lvProjects = (ListView) findViewById(R.id.lvProjects);
         Log.d("DEBUG", "Connecting adapter");
-        lvProjects.setAdapter(adapter);
+        lvProjects.setAdapter(pla);
         Log.d("DEBUG", "done");
     }
 }

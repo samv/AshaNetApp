@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginBottom="16dp"
+    >
+
+  <TextView
+     android:id="@+id/tvName"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentTop="true"
+     android:layout_alignParentLeft="true"
+     android:layout_marginTop="4dp"
+     android:layout_marginLeft="8dp"
+     android:layout_marginRight="8dp"
+     android:typeface="sans"
+     android:textStyle="bold"
+     android:textSize="16sp"
+     android:textColor="@color/black"
+     />
+
+  <TextView
+     android:id="@+id/tvState"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_below="@id/tvName"
+     android:layout_alignParentRight="true"
+     android:layout_marginRight="8dp"
+     android:typeface="sans"
+     android:textSize="12sp"
+     android:textColor="@color/black"
+     />
+
+  <TextView
+     android:id="@+id/tvTypeLabel"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_below="@id/tvState"
+     android:layout_alignParentLeft="true"
+     android:layout_marginTop="4dp"
+     android:layout_marginLeft="8dp"
+     android:text="@string/label_project_type"
+     android:typeface="sans"
+     android:textStyle="bold"
+     android:textSize="12sp"
+     android:textColor="@color/black"
+     />
+
+  <TextView
+     android:id="@+id/tvTypeName"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_below="@id/tvState"
+     android:layout_toRightOf="@id/tvTypeLabel"
+     android:layout_marginTop="4dp"
+     android:layout_marginLeft="8dp"
+     android:typeface="sans"
+     android:textSize="12sp"
+     android:textColor="@color/black"
+     />
+
+  <TextView
+     android:id="@+id/tvFundedByLabel"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_below="@id/tvTypeLabel"
+     android:layout_alignParentLeft="true"
+     android:layout_marginTop="4dp"
+     android:layout_marginLeft="8dp"
+     android:text="@string/label_project_funded_by"
+     android:typeface="sans"
+     android:textStyle="bold"
+     android:textSize="12sp"
+     android:textColor="@color/black"
+     />
+
+  <TextView
+     android:id="@+id/tvFundedBy"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_below="@id/tvTypeName"
+     android:layout_toRightOf="@id/tvFundedByLabel"
+     android:layout_marginTop="4dp"
+     android:layout_marginLeft="8dp"
+     android:typeface="sans"
+     android:textSize="12sp"
+     android:textColor="@color/black"
+     />
+
+</RelativeLayout>

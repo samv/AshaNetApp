@@ -2,4 +2,6 @@
 <resources>
     <string name="app_name">Asha</string>
     <string name="title_projects">Projects</string>
+    <string name="label_project_type">Type</string>
+    <string name="label_project_funded_by">Funded By</string>
 </resources>
