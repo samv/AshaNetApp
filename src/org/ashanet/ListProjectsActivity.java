@@ -20,10 +20,9 @@ public class ListProjectsActivity extends Activity
         setContentView(R.layout.activity_list_projects);
         Log.d("DEBUG", "Creating Parse Query Adapter");
         adapter = new ParseQueryAdapter<ParseObject>
-            (this, "Project"); //, android.R.layout.simple_list_item_1);
+            (this, "Project", android.R.layout.simple_list_item_1);
         Log.d("DEBUG", "Setting text key");
         adapter.setTextKey("name");
-        adapter.setImageKey("projectImage");
  
         lvProjects = (ListView) findViewById(R.id.lvProjects);
         Log.d("DEBUG", "Connecting adapter");
