@@ -4,10 +4,10 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-<TextView
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:text="Hello World, ListProjectsActivity"
-    />
+  <ListView
+     android:id="@+id/lvProjects"
+     android:layout_width="fill_parent"
+     android:layout_height="fill_parent"
+     />
 </LinearLayout>
 
