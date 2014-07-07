@@ -10,7 +10,7 @@ equivalence with https://github.com/sagpatil/AshaNet_iOS
 
 * ☑ As a potential donor, I can see a list of projects. (#5)
 
-* ☐ As a potential donor, I can see the details of a project (#6)
+* ☑ As a potential donor, I can see the details of a project (#6)
 
 * ☐ As a user, I can control application settings (#10)
 

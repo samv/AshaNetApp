@@ -1,8 +1,8 @@
 
 package org.ashanet.typedef;
 
-import com.parse.ParseObject;
 import com.parse.ParseClassName;
+import com.parse.ParseObject;
 
 @ParseClassName("Project")
 public class Project extends ParseObject {

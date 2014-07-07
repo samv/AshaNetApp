@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Asha</string>
-    <string name="title_projects">Projects</string>
-    <string name="label_project_type">Type</string>
-    <string name="label_project_funded_by">Funded By</string>
+    <string name="title_projects">Asha Projects</string>
+    <string name="label_project_type">Type:</string>
+    <string name="label_project_funded_by">Funded By:</string>
+    <string name="label_project_focus">Focus:</string>
+    <string name="label_project_purpose">Purpose:</string>
+    <string name="label_project_chapter">Chapter:</string>
+    <string name="label_project_year">Year:</string>
+    <string name="label_project_area">Area:</string>
+    <string name="label_project_description">Description:</string>
+
+    <string name="title_project_details">Project Details</string>
+    <string name="cta_donate">Donate</string>
+
 </resources>
