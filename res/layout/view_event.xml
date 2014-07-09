@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white_smoke"
+    android:layout_marginBottom="16dp"
+    >
+
+  <TextView
+     android:id="@+id/tvName"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentTop="true"
+     android:layout_alignParentLeft="true"
+     android:layout_marginTop="32dp"
+     android:layout_marginLeft="16dp"
+     android:typeface="sans"
+     android:textStyle="bold"
+     android:textSize="20sp"
+     android:textColor="@color/black"
+     />
+
+  <TextView
+     android:id="@+id/tvChapter"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignBottom="@id/tvName"
+     android:layout_alignParentRight="true"
+     android:layout_marginRight="8dp"
+     android:typeface="sans"
+     android:textSize="14sp"
+     android:textColor="@color/black"
+     />
+
+  <TextView
+     android:id="@+id/tvWhen"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_below="@id/tvName"
+     android:layout_alignParentLeft="true"
+     android:layout_marginTop="8dp"
+     android:layout_alignLeft="@id/tvName"
+     android:typeface="sans"
+     android:textSize="14sp"
+     android:textColor="@color/black"
+     />
+
+  <TextView
+     android:id="@+id/tvAddressLabel"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_below="@id/tvWhen"
+     android:layout_marginTop="16dp"
+     android:layout_alignLeft="@id/tvName"
+     android:text="@string/label_event_address"
+     android:typeface="sans"
+     android:textStyle="bold"
+     android:textSize="14sp"
+     android:textColor="@color/black"
+     />
+
+  <TextView
+     android:id="@+id/tvAddress"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_below="@id/tvWhen"
+     android:layout_toRightOf="@id/tvAddressLabel"
+     android:layout_marginTop="16dp"
+     android:layout_marginLeft="16dp"
+     android:typeface="sans"
+     android:textSize="12sp"
+     android:textColor="@color/black"
+     />
+
+</RelativeLayout>

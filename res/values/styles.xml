@@ -17,6 +17,7 @@
     <style name="AshaActionBar"
            parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@color/dark_orange</item>
+        <item name="android:backgroundStacked">@color/orange</item>
     </style>
 
 </resources>

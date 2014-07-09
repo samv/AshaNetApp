@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Asha</string>
+    <string name="tab_projects">Projects</string>
     <string name="title_projects">Asha Projects</string>
     <string name="label_project_type">Type:</string>
     <string name="label_project_funded_by">Funded By:</string>
@@ -17,5 +18,9 @@
     <string name="cta_donate">Donate</string>
 
     <string name="cta_more_projects">Load More Projects...</string>
+
+    <string name="tab_events">Events</string>
+    <string name="label_event_address">At:</string>
+    <string name="cta_more_events">Load More Events...</string>
 
 </resources>
