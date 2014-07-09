@@ -49,6 +49,7 @@ public class ListProjectsActivity
         Project p = pla.getItem(position);
         Log.d("DEBUG", "putting project = " + p.getObjectId());
         i.putExtra("projectId", p.getObjectId());
+        i.putExtra("projectName", p.getName());
         startActivity(i);
     }
 

@@ -30,6 +30,9 @@ public class ProjectDetailsActivity
 
         intent = getIntent();
         String projectId = intent.getStringExtra("projectId");
+        String projectName = intent.getStringExtra("projectName");
+        if (projectName != null)
+            getActionBar().setTitle(projectName);
 
         Log.d("DEBUG", "got project = " + projectId);
 
@@ -59,6 +62,7 @@ public class ProjectDetailsActivity
 
     public void displayData(Project project) {
         Log.d("DEBUG", "displaying project = " + project);
+        getActionBar().setTitle(project.getName());
         // TODO - set the project name in the action bar
         //((TextView)findViewById(R.id.tvName)).setText(project.getName());
         ((TextView)findViewById(R.id.tvTypeName)).setText
