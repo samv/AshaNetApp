@@ -14,4 +14,6 @@
     <string name="title_project_details">Project Details</string>
     <string name="cta_donate">Donate</string>
 
+    <string name="cta_more_projects">Load More Projects...</string>
+
 </resources>

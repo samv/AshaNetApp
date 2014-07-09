@@ -30,7 +30,7 @@ public class ListProjectsActivity
         pla.setTextKey("name");
  
         lvProjects = (ListView) findViewById(R.id.lvProjects);
-        Log.d("DEBUG", "Connecting adapter");
+        Log.d("DEBUG", "Connecting adapter to " + lvProjects);
         lvProjects.setAdapter(pla);
         lvProjects.setOnItemClickListener(this);
         Log.d("DEBUG", "set on item click listener");
