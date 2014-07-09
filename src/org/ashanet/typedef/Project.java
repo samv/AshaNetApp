@@ -15,6 +15,16 @@ public class Project extends ParseObject {
         setName(name);
     }
 
+    public String getArea() { return getString("area"); }
+    public String getChapterOid() { return getString("contact_chapter"); }
+    public String getDescription() { return getString("description"); }
+    public int getFocusId() { return getInt("focus"); }
+    public String getSecondaryFocus() { return getString("secondary_focus"); }
+    public int getStatusId() { return getInt("status"); }
+    public int getId() { return getInt("project_id"); }
+    public int getProjectTypeId() { return getInt("project_type"); }
+    public double getTotalFunds() { return getDouble("total_funds"); }
+
     public String getName() {
         return getString("name");
     }
@@ -30,13 +40,4 @@ public class Project extends ParseObject {
     public void setState(String state) {
         put("state", state);
     }
-
-    public int getType() {
-        return getInt("type");
-    }
-
-    public void setType(int type) {
-        put("type_id", type);
-    }
-
 }

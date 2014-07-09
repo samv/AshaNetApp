@@ -36,8 +36,10 @@ public class ProjectListAdapter
 
         ((TextView)v.findViewById(R.id.tvName)).setText(X.getName());
         ((TextView)v.findViewById(R.id.tvState)).setText(X.getState());
-        ((TextView)v.findViewById(R.id.tvTypeName)).setText("Social Good");
-        ((TextView)v.findViewById(R.id.tvFundedBy)).setText("San Francisco");
+        ((TextView)v.findViewById(R.id.tvTypeName)).setText
+            (Integer.toOctalString(X.getProjectTypeId()));
+        ((TextView)v.findViewById(R.id.tvFundedBy)).setText
+            (X.getChapterOid());
         return v;
     }
 

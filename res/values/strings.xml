@@ -5,9 +5,11 @@
     <string name="label_project_type">Type:</string>
     <string name="label_project_funded_by">Funded By:</string>
     <string name="label_project_focus">Focus:</string>
+    <string name="label_project_2nd_focus">And:</string>
     <string name="label_project_purpose">Purpose:</string>
     <string name="label_project_chapter">Chapter:</string>
     <string name="label_project_year">Year:</string>
+    <string name="label_project_funds">Funding:</string>
     <string name="label_project_area">Area:</string>
     <string name="label_project_description">Description:</string>
 
