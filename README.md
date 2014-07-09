@@ -10,13 +10,25 @@ equivalence with https://github.com/sagpatil/AshaNet_iOS
 
 * ☑ As a potential donor, I can see a list of projects. (#5)
 
-* ☑ As a potential donor, I can see the details of a project (#6)
+  * ☑ As a potential donor, I can see the details of a project (#6)
+
+  * ☐ As a donor, I can complete a donation to a project using Paypal (#7)
+
+* ☐ As a potential donor, I can see a list of events (#2)
+
+  * ☐ As a potential donor, I can see the details of an event (#4)
+
+* ☐ As a chapter member, I can donate to the chapter general fund (#8)
 
 * ☐ As a user, I can control application settings (#10)
 
-  * ☐ As an administrator, I can log in to the app. (#9)
+* ☐ As an administrator, I can log in to the app. (#9)
 
-So far, the development of this Android app has taken about 3 hours.
+  * ☐ As an administrator, I can create new and edit existing events (#12)
+
+  * ☐ As an administrator, I can create and edit projects (#11)
+
+So far, the development of this Android app has taken about 11 hours.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
