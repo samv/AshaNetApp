@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.parse.GetCallback;
@@ -23,7 +24,9 @@ public class ProjectDetailsActivity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_project_details);
+        setProgressBarIndeterminateVisibility(true);
 
         intent = getIntent();
         String projectId = intent.getStringExtra("projectId");
@@ -34,6 +37,7 @@ public class ProjectDetailsActivity
         q.getInBackground
             (projectId, new GetCallback<Project>() {
                 @Override public void done(Project project, ParseException e) {
+                    setProgressBarIndeterminateVisibility(false);
                     if (e != null)
                         showParseError(e);
                     else
