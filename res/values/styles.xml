@@ -20,4 +20,9 @@
         <item name="android:backgroundStacked">@color/orange</item>
     </style>
 
+    <style name="AshaActionBarTab"
+           parent="@android:style/Widget.ActionBar.TabBar">
+        <item name="android:background">@color/white</item>
+    </style>
+
 </resources>

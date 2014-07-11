@@ -14,7 +14,7 @@ equivalence with https://github.com/sagpatil/AshaNet_iOS
 
   * ☐ As a donor, I can complete a donation to a project using Paypal (#7)
 
-* ☐ As a potential donor, I can see a list of events (#2)
+* ☑ As a potential donor, I can see a list of events (#2)
 
   * ☐ As a potential donor, I can see the details of an event (#4)
 
