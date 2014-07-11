@@ -7,7 +7,9 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 import org.ashanet.R;
 import org.ashanet.fragment.EventListFragment;
@@ -17,7 +19,8 @@ import org.ashanet.util.FragmentTabListener;
 
 public class MainActivity
     extends Activity
-    implements ProgressIndicator
+    implements ProgressIndicator,
+               ActionBar.OnNavigationListener
 {
     ProjectListFragment projectsFragment;
     EventListFragment eventsFragment;
@@ -32,32 +35,25 @@ public class MainActivity
         setContentView(R.layout.activity_main);
         setProgressBarIndeterminateVisibility(false);
         ActionBar actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.addTab
-            (actionBar.newTab()
-             .setText(R.string.tab_projects)
-             .setTag("projects")
-             .setTabListener
-             (new FragmentTabListener<ProjectListFragment>
-              (R.id.flMain, this, "projects", ProjectListFragment.class)));
-        actionBar.addTab
-            (actionBar.newTab()
-             .setText(R.string.tab_events)
-             .setTag("events")
-             .setTabListener
-             (new FragmentTabListener<EventListFragment>
-              (R.id.flMain, this, "events", EventListFragment.class)));
-  }
-
-    public void createProjectsFragment() {
-        Log.d("DEBUG", "Creating Projects Fragment");
-        projectsFragment = new ProjectListFragment(this);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        SpinnerAdapter mSpinnerAdapter = ArrayAdapter.createFromResource
+            (this, R.array.action_list,
+             android.R.layout.simple_spinner_dropdown_item);
+        actionBar.setListNavigationCallbacks(mSpinnerAdapter, this);
     }
 
-    public void createEventsFragment() {
+    public Fragment getProjectsFragment() {
+        Log.d("DEBUG", "Creating Projects Fragment");
+        if (projectsFragment == null)
+            projectsFragment = new ProjectListFragment(this);
+        return projectsFragment;
+    }
+
+    public Fragment getEventsFragment() {
         Log.d("DEBUG", "Creating Events Fragment");
-        eventsFragment = new EventListFragment(this);
+        if (eventsFragment == null)
+            eventsFragment = new EventListFragment(this);
+        return eventsFragment;
     }
 
     void chooseFragment(Fragment frag) {
@@ -76,5 +72,21 @@ public class MainActivity
             Log.d("DEBUG", "All done!");
             setProgressBarIndeterminateVisibility(false);
         }
+    }
+    
+    @Override
+    public boolean onNavigationItemSelected(int position, long itemId) {
+        switch (position) {
+        case 0:
+            chooseFragment(getProjectsFragment());
+            break;
+        case 1:
+            chooseFragment(getEventsFragment());
+            break;
+        default:
+            Toast.makeText(this, "TODO", Toast.LENGTH_SHORT).show();
+            break;
+        }
+        return true;
     }
 }
