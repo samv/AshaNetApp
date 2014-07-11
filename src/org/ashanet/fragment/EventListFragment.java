@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 import org.ashanet.R;
+import org.ashanet.activity.EventDetailsActivity;
 import org.ashanet.adapter.EventListAdapter;
 import org.ashanet.interfaces.ProgressIndicator;
 import org.ashanet.typedef.Event;
@@ -58,8 +59,11 @@ public class EventListFragment
                             long id)
     {
         Log.d("DEBUG", "clicked on item " + position);
-        Event e = pla.getItem(position);
-        Toast.makeText(getActivity(), "TODO show event " + e.getName(),
-                       Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(getActivity(), EventDetailsActivity.class);
+        Event p = pla.getItem(position);
+        Log.d("DEBUG", "putting event = " + p.getObjectId());
+        i.putExtra("eventId", p.getObjectId());
+        i.putExtra("eventName", p.getName());
+        startActivity(i);
     }
 }

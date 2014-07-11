@@ -23,4 +23,7 @@
     <string name="label_event_address">At:</string>
     <string name="cta_more_events">Load More Events...</string>
 
+    <string name="title_event_details">Event Details</string>
+    <string name="cta_get_tickets">Get Tickets</string>
+
 </resources>
