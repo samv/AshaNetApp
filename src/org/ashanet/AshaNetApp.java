@@ -8,6 +8,7 @@ import com.parse.ParseObject;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import org.ashanet.typedef.Event;
 import org.ashanet.typedef.Project;
 
 public class AshaNetApp extends Application {
@@ -40,5 +41,6 @@ public class AshaNetApp extends Application {
 
     private void registerClasses() {
         ParseObject.registerSubclass(Project.class);
+        ParseObject.registerSubclass(Event.class);
     }
 }
