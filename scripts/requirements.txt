@@ -1,0 +1,4 @@
+-e git://github.com/hearsaycorp/richenum#egg=richenum
+-e git://github.com/hearsaycorp/normalize#egg=normalize
+lxml
+requests
