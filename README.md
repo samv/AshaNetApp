@@ -16,7 +16,7 @@ equivalence with https://github.com/sagpatil/AshaNet_iOS
 
 * ☑ As a potential donor, I can see a list of events (#2)
 
-  * ☐ As a potential donor, I can see the details of an event (#4)
+  * ☑ As a potential donor, I can see the details of an event (#4)
 
 * ☐ As a chapter member, I can donate to the chapter general fund (#8)
 
