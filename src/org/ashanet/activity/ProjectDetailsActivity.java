@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.parse.GetCallback;
@@ -74,8 +75,8 @@ public class ProjectDetailsActivity
         ((TextView)findViewById(R.id.tvFunds)).setText
             (String.format("$%.0f", project.getTotalFunds()));
         ((TextView)findViewById(R.id.tvArea)).setText(project.getState());
-        ((TextView)findViewById(R.id.tvDescription)).setText
-            (project.getDescription());
+        ((WebView)findViewById(R.id.tvDescription)).loadData
+            (project.getDescription(), "text/html", null);
         ((TextView)findViewById(R.id.tvSecondFocus)).setText
             (project.getSecondaryFocus());
     }
