@@ -24,6 +24,8 @@ public class EventListFragment
     private ListView lvEvents;
     private ProgressIndicator pi;
 
+    public EventListFragment() {}
+
     public EventListFragment(ProgressIndicator pi) {
         this.pi = pi;
     }

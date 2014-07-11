@@ -48,6 +48,7 @@ public class EventListAdapter
 
     @Override
     public View getNextPageView(View v, ViewGroup parent) {
+        Log.d("DEBUG", "Creating next page view!");
         if (v == null)
             v = LayoutInflater.from(getContext())
                 .inflate(R.layout.view_next_page, parent, false);
@@ -57,10 +58,12 @@ public class EventListAdapter
     }
 
     public void onLoaded(List<Event> objects, Exception e) {
+        Log.d("DEBUG", "Loaded!");
         pi.setProgressIndicator(-1, false);
     }
 
     public void onLoading() {
+        Log.d("DEBUG", "Loading...");
         pi.setProgressIndicator(-1, true);
     }
 

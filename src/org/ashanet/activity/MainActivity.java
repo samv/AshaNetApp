@@ -13,11 +13,11 @@ import org.ashanet.R;
 import org.ashanet.fragment.EventListFragment;
 import org.ashanet.fragment.ProjectListFragment;
 import org.ashanet.interfaces.ProgressIndicator;
+import org.ashanet.util.FragmentTabListener;
 
 public class MainActivity
     extends Activity
-    implements ProgressIndicator,
-               ActionBar.TabListener 
+    implements ProgressIndicator
 {
     ProjectListFragment projectsFragment;
     EventListFragment eventsFragment;
@@ -34,15 +34,21 @@ public class MainActivity
         ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.addTab(actionBar.newTab()
-                         .setText(R.string.tab_projects)
-                         .setTag("projects")
-                         .setTabListener(this));
-        actionBar.addTab(actionBar.newTab()
-                         .setText(R.string.tab_events)
-                         .setTag("events")
-                         .setTabListener(this));
-    }
+        actionBar.addTab
+            (actionBar.newTab()
+             .setText(R.string.tab_projects)
+             .setTag("projects")
+             .setTabListener
+             (new FragmentTabListener<ProjectListFragment>
+              (R.id.flMain, this, "projects", ProjectListFragment.class)));
+        actionBar.addTab
+            (actionBar.newTab()
+             .setText(R.string.tab_events)
+             .setTag("events")
+             .setTabListener
+             (new FragmentTabListener<EventListFragment>
+              (R.id.flMain, this, "events", EventListFragment.class)));
+  }
 
     public void createProjectsFragment() {
         Log.d("DEBUG", "Creating Projects Fragment");
@@ -70,36 +76,5 @@ public class MainActivity
             Log.d("DEBUG", "All done!");
             setProgressBarIndeterminateVisibility(false);
         }
-    }
-    //Called when a tab that is already selected is chosen again by the user.
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft)
-    {
-        Log.d("DEBUG", "Tab reselected: " + tab.getTag());
-        Toast.makeText(this, "You're looking at that already.",
-                       Toast.LENGTH_SHORT).show();
-    }
-
-    //Called when a tab enters the selected state.
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft)
-    {
-        Log.d("DEBUG", "Tab selected: " + tab.getTag());
-        if (tab.getTag() == "projects") {
-            if (projectsFragment == null)
-                createProjectsFragment();
-            ft.add(R.id.flMain, projectsFragment, "projects");
-        }
-        else {
-            if (eventsFragment == null)
-                createEventsFragment();
-            Log.d("DEBUG", "Replacing flMain with " + eventsFragment);
-            ft.add(R.id.flMain, eventsFragment, "events");
-        }
-    }
-
-    //Called when a tab exits the selected state.
-    public void	onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft)
-    {
-        Log.d("DEBUG", "Tab unselected: " + tab.getTag());
-        ft.detach(currentFragment);
     }
 }

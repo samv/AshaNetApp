@@ -24,6 +24,8 @@ public class ProjectListFragment
     private ListView lvProjects;
     private ProgressIndicator pi;
 
+    public ProjectListFragment() {}
+
     public ProjectListFragment(ProgressIndicator pi) {
         this.pi = pi;
     }
