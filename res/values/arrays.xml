@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="action_list">
+    <string-array name="noun_list">
       <item>Projects</item>   
       <item>Events</item>
       <item>Chapters</item>
+    </string-array>
+
+    <string-array name="project_orders">
+      <item>Show Alphabetically</item>
+      <item>Show Largest</item>
+      <item>N</item>
     </string-array>
 </resources>
