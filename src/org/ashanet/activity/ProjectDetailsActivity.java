@@ -1,6 +1,6 @@
 package org.ashanet.activity;
 
-import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +16,7 @@ import org.ashanet.R;
 import org.ashanet.typedef.Project;
 
 public class ProjectDetailsActivity
-    extends Activity
+    extends FragmentActivity
 {
     Intent intent;
     Project project;
@@ -34,6 +34,8 @@ public class ProjectDetailsActivity
         String projectName = intent.getStringExtra("projectName");
         if (projectName != null)
             getActionBar().setTitle(projectName);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
 
         Log.d("DEBUG", "got project = " + projectId);
 

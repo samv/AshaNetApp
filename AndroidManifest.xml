@@ -26,10 +26,12 @@
     </activity>
     <activity android:name="org.ashanet.activity.ProjectDetailsActivity"
               android:label="@string/title_project_details"
-              >
+              android:parentActivityName="org.ashanet.activity.MainActivity"
+        >
     </activity>
     <activity android:name="org.ashanet.activity.EventDetailsActivity"
               android:label="@string/title_event_details"
+              android:parentActivityName="org.ashanet.activity.MainActivity"
               >
     </activity>
   </application>

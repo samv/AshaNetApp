@@ -1,6 +1,6 @@
 package org.ashanet.activity;
 
-import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -24,7 +24,7 @@ import org.ashanet.R;
 import org.ashanet.typedef.Event;
 
 public class EventDetailsActivity
-    extends Activity
+    extends FragmentActivity
 {
     Intent intent;
     Event event;
@@ -44,6 +44,8 @@ public class EventDetailsActivity
         String eventName = intent.getStringExtra("eventName");
         if (eventName != null)
             getActionBar().setTitle(eventName);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
 
         Log.d("DEBUG", "got event = " + eventId);
 
