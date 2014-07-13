@@ -3,7 +3,7 @@
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
-    <style name="AppBaseTheme" parent="android:Theme.Holo.Light">
+    <style name="AppBaseTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <!-- FIXME for gingerbread -->
         <item name="android:actionBarStyle">@style/AshaActionBar</item>
     </style>
@@ -16,13 +16,124 @@
     <!-- ActionBar styles -->
     <style name="AshaActionBar"
            parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@color/dark_orange</item>
-        <item name="android:backgroundStacked">@color/orange</item>
+      <item name="android:titleTextStyle">@style/AshaActionBar.TitleTextStyle</item>
+      <item name="android:background">@color/burlywood1</item>
+      <item name="android:backgroundStacked">@color/moccasin</item>
+    </style>
+
+    <style name="AshaActionBar.TitleTextStyle"
+           parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+      <item name="android:background">@color/royal_blue4</item>
     </style>
 
     <style name="AshaActionBarTab"
            parent="@android:style/Widget.ActionBar.TabBar">
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@color/white_smoke</item>
     </style>
 
+    <!-- general text settings: FIXME Android 4.1+ -->
+    <style name="text" parent="@android:style/TextAppearance.Widget.TextView">
+      <item name="android:textColor">@color/royal_blue4</item>
+      <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="micro" parent="text">
+      <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="small" parent="text">
+      <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="medium" parent="text">
+      <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="medium.color">
+      <item name="android:textColor">@color/steel_blue</item>
+      <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="large" parent="text">
+      <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="large.heading">
+      <item name="android:fontFamily">sans-serif</item>
+      <item name="android:textStyle">bold</item>
+    </style>
+
+   <!-- nav drawer -->
+   <style name="nav_drawer">
+     <item name="android:background">@color/white_smoke</item>
+   </style>
+
+   <style name="nav_drawer_title">
+     <item name="android:background">@drawable/nav_drawer_title_bg</item>
+   </style>
+
+   <style name="nav_drawer_title_text" parent="large.heading">
+     <item name="android:textColor">@color/white_smoke</item>
+   </style>
+
+   <style name="nav_drawer_item" parent="medium">
+     <item name="android:background">@color/white_smoke</item>
+   </style>
+
+   <style name="global_action_item">
+     <item name="android:background">@color/gainsboro</item>
+   </style>
+
+   <style name="nav_drawer_heading" parent="micro">
+     <item name="android:background">@color/white_smoke</item>
+     <item name="android:textAllCaps">true</item>
+     <item name="android:textAllCaps">true</item>
+   </style>
+
+    <style name="global_action_text" parent="small">
+      <item name="android:textSize">14sp</item>
+      <item name="android:textColor">@color/gray7</item>
+    </style>
+
+    <style name="body">
+      <item name="android:background">@color/white_smoke</item>
+    </style>
+
+    <!-- buttons -->
+    <style name="button" parent="medium">
+      <item name="android:fontFamily">sans-serif</item>
+      <item name="android:textSize">18sp</item>
+      <item name="android:textStyle">bold</item>
+      <item name="android:textColor">@color/white_smoke</item>
+      <item name="android:background">@color/burlywood1</item>
+    </style>
+
+    <style name="button_cta" parent="button">
+      <item name="android:background">@color/moccasin</item>
+    </style>
+
+    <style name="button_donate" parent="button">
+      <item name="android:textColor">@color/dodger_blue</item>
+      <item name="android:background">@color/powder_blue</item>
+    </style>
+
+    <!-- info pages -->
+    <style name="list_title" parent="medium">
+      <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="list_label" parent="micro">
+    </style>
+
+    <style name="list_detail" parent="small">
+    </style>
+
+    <style name="detail_label" parent="small">
+      <item name="android:textColor">@color/w3c_gray</item>
+    </style>
+
+    <style name="detail_value" parent="medium">
+    </style>
+
+    
 </resources>

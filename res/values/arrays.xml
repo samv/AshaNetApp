@@ -6,9 +6,23 @@
       <item>Chapters</item>
     </string-array>
 
-    <string-array name="project_orders">
-      <item>Show Alphabetically</item>
-      <item>Show Largest</item>
-      <item>N</item>
+    <string-array name="global_actions">
+      <item>About</item>   
+      <item>Send Feedback</item>
     </string-array>
+
+    <string-array name="project_verbs">
+      <item>Show A-Z</item>
+      <item>Create</item>
+    </string-array>
+
+    <string-array name="event_verbs">
+      <item>Show A-Z</item>
+      <item>Create</item>
+    </string-array>
+
+    <string-array name="chapter_verbs">
+      <item>Show A-Z</item>
+    </string-array>
+
 </resources>

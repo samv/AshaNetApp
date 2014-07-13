@@ -13,11 +13,8 @@
      android:layout_width="wrap_content"
      android:layout_alignParentBottom="true"
      android:layout_centerHorizontal="true"
-     android:typeface="sans"
-     android:textSize="16sp"
-     android:textColor="@color/white"
-     android:background="@color/dark_orange"
      android:text="@string/cta_get_tickets"
+     style="@style/button_cta"
      />
 
   <ImageView
@@ -33,8 +30,7 @@
      android:layout_height="wrap_content"
      android:layout_above="@id/btnGetTickets"
      android:layout_centerHorizontal="true"
-     android:textColor="@color/steel_blue"
-     android:textSize="18sp"
+     style="@style/medium.color"
      />
 
   <TextView
@@ -43,9 +39,6 @@
      android:layout_height="wrap_content"
      android:layout_above="@id/tvAddress"
      android:layout_centerHorizontal="true"
-     android:textColor="@color/black"
-     android:textSize="18sp"
-     android:textStyle="bold"
      />
 
   <ScrollView
@@ -56,13 +49,8 @@
      >
     <WebView
        android:id="@+id/tvDescription"
-       android:layout_width="wrap_content"
+       android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:layout_marginTop="4dp"
-       android:layout_marginLeft="8dp"
-       android:typeface="sans"
-       android:textSize="14sp"
-       android:textColor="@color/black"
        />
   </ScrollView>
   

@@ -3,7 +3,7 @@
    xmlns:android="http://schemas.android.com/apk/res/android"
    android:layout_width="fill_parent"
    android:layout_height="fill_parent"
-   android:background="@color/white_smoke"
+   style="@style/body"
    >
 
   <!-- call to action -->
@@ -12,11 +12,8 @@
      android:layout_height="wrap_content"
      android:layout_width="match_parent"
      android:layout_alignParentBottom="true"
-     android:typeface="sans"
-     android:textSize="16sp"
-     android:textColor="@color/dodger_blue"
-     android:background="@color/powder_blue"
      android:text="@string/cta_donate"
+     style="@style/button_donate"
      />
 
   <!-- Android supports crappy layout too, using TableLayout -->
@@ -36,9 +33,7 @@
          android:layout_marginTop="4dp"
          android:layout_marginLeft="8dp"
          android:text="@string/label_project_type"
-         android:typeface="sans"
-         android:textSize="12sp"
-         android:textColor="@color/black"
+         style="@style/detail_label"
          />
       <TextView
          android:id="@+id/tvTypeName"
@@ -46,9 +41,7 @@
          android:layout_height="wrap_content"
          android:layout_marginTop="4dp"
          android:layout_marginLeft="16dp"
-         android:typeface="sans"
-         android:textSize="12sp"
-         android:textColor="@color/black"
+         style="@style/detail_value"
          />
     </TableRow>
 
@@ -60,9 +53,7 @@
          android:layout_marginTop="4dp"
          android:layout_marginLeft="8dp"
          android:text="@string/label_project_focus"
-         android:typeface="sans"
-         android:textSize="12sp"
-         android:textColor="@color/black"
+         style="@style/detail_label"
          />
       <TextView
          android:id="@+id/tvFocus"
@@ -70,9 +61,7 @@
          android:layout_height="wrap_content"
          android:layout_marginTop="4dp"
          android:layout_marginLeft="16dp"
-         android:typeface="sans"
-         android:textSize="12sp"
-         android:textColor="@color/black"
+         style="@style/detail_value"
          />
     </TableRow>
     <TableRow android:layout_gravity="left">
@@ -83,9 +72,7 @@
          android:layout_marginTop="4dp"
          android:layout_marginLeft="8dp"
          android:text="@string/label_project_2nd_focus"
-         android:typeface="sans"
-         android:textSize="12sp"
-         android:textColor="@color/black"
+         style="@style/detail_label"
          />
       <TextView
          android:id="@+id/tvSecondFocus"
@@ -93,9 +80,7 @@
          android:layout_height="wrap_content"
          android:layout_marginTop="4dp"
          android:layout_marginLeft="16dp"
-         android:typeface="sans"
-         android:textSize="12sp"
-         android:textColor="@color/black"
+         style="@style/detail_value"
          />
     </TableRow>
     <TableRow android:layout_gravity="left">
@@ -106,9 +91,7 @@
          android:layout_marginTop="4dp"
          android:layout_marginLeft="8dp"
          android:text="@string/label_project_chapter"
-         android:typeface="sans"
-         android:textSize="12sp"
-         android:textColor="@color/black"
+         style="@style/detail_label"
          />
       <TextView
          android:id="@+id/tvChapter"
@@ -116,9 +99,7 @@
          android:layout_height="wrap_content"
          android:layout_marginTop="4dp"
          android:layout_marginLeft="16dp"
-         android:typeface="sans"
-         android:textSize="12sp"
-         android:textColor="@color/black"
+         style="@style/detail_value"
          />
     </TableRow>
   </TableLayout>
@@ -132,9 +113,7 @@
      android:layout_marginTop="4dp"
      android:layout_marginLeft="8dp"
      android:text="@string/label_project_funds"
-     android:typeface="sans"
-     android:textSize="12sp"
-     android:textColor="@color/black"
+     style="@style/detail_label"
      />
   <TextView
      android:id="@+id/tvFunds"
@@ -144,9 +123,7 @@
      android:layout_toRightOf="@id/tvFundsLabel"
      android:layout_marginTop="4dp"
      android:layout_marginLeft="16dp"
-     android:typeface="sans"
-     android:textSize="12sp"
-     android:textColor="@color/black"
+     style="@style/detail_value"
      />
 
   <TextView
@@ -159,9 +136,7 @@
      android:layout_marginTop="4dp"
      android:layout_marginLeft="32dp"
      android:text="@string/label_project_area"
-     android:typeface="sans"
-     android:textSize="12sp"
-     android:textColor="@color/black"
+     style="@style/detail_label"
      />
   <TextView
      android:id="@+id/tvArea"
@@ -171,9 +146,7 @@
      android:layout_toRightOf="@id/tvAreaLabel"
      android:layout_marginTop="4dp"
      android:layout_marginLeft="16dp"
-     android:typeface="sans"
-     android:textSize="12sp"
-     android:textColor="@color/black"
+     style="@style/detail_value"
      />
 
   <TextView
@@ -185,9 +158,7 @@
      android:layout_marginTop="4dp"
      android:layout_marginLeft="8dp"
      android:text="@string/label_project_description"
-     android:typeface="sans"
-     android:textSize="16sp"
-     android:textColor="@color/black"
+     style="@style/detail_label"
      />
 
   <ScrollView
@@ -204,9 +175,7 @@
        android:layout_height="wrap_content"
        android:layout_marginTop="4dp"
        android:layout_marginLeft="8dp"
-       android:typeface="sans"
-       android:textSize="14sp"
-       android:textColor="@color/black"
+       style="@style/detail_value"
        />
   </ScrollView>
   

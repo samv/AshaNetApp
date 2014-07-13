@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="80dp"
-    android:background="@color/white_smoke"
     android:layout_marginBottom="16dp"
     >
 
@@ -12,10 +11,7 @@
      android:layout_height="wrap_content"
      android:layout_centerHorizontal="true"
      android:layout_centerVertical="true"
-     android:typeface="sans"
-     android:textStyle="bold"
-     android:textSize="16sp"
-     android:textColor="@color/black"
+     style="medium"
      />
 
 </RelativeLayout>

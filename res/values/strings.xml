@@ -26,4 +26,9 @@
     <string name="title_event_details">Event Details</string>
     <string name="cta_get_tickets">Get Tickets</string>
 
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="nav_title">Asha</string>
+    <string name="nav_title_find">Find:</string>
+
 </resources>

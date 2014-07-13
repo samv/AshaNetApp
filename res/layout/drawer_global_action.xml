@@ -1,0 +1,45 @@
+<RelativeLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="wrap_content"
+   android:background="@color/gainsboro"
+   style="global_action_item"
+   >
+
+  <ImageView
+     android:id="@+id/ivIcon"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentLeft="true"
+     android:layout_centerVertical="true"
+     android:src="@drawable/gear_icon"
+     android:background="@color/gainsboro"
+    />
+   
+  <TextView
+     android:id="@android:id/text1"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_toRightOf="@id/ivIcon"
+     android:layout_centerVertical="true"
+     style="@style/global_action_text"
+     android:paddingTop="4dp"
+     android:paddingBottom="4dp"
+     android:paddingLeft="8dp"
+     android:paddingRight="8dp"
+     />
+
+  <!-- for items with in-line control -->
+  <ImageButton
+     android:id="@+id/ibControl"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_toRightOf="@android:id/text1"
+     android:layout_alignParentRight="true"
+     android:layout_centerVertical="true"
+     android:paddingRight="16dp"
+     android:src="@drawable/gear_icon"
+     android:background="@color/gainsboro"
+     />
+
+</RelativeLayout>

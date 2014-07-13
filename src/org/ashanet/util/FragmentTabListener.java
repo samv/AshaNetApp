@@ -1,17 +1,17 @@
 package org.ashanet.util;
 
-import android.app.ActionBar.Tab;
-import android.app.ActionBar.TabListener;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar.Tab;
+import android.support.v7.app.ActionBar.TabListener;
 import android.util.Log;
 
 public class FragmentTabListener<T extends Fragment>
     implements TabListener {
 
     private Fragment mFragment;
-	private final Activity mActivity;
+	private final FragmentActivity mActivity;
 	private final String mTag;
 	private final Class<T> mClass;
 	private final int mfragmentContainerId;
@@ -19,7 +19,7 @@ public class FragmentTabListener<T extends Fragment>
     // This version defaults to replacing the entire activity content area
     // new FragmentTabListener<SomeFragment>
     //     (this, "first", SomeFragment.class))
-	public FragmentTabListener(Activity activity, String tag, Class<T> clz) {
+	public FragmentTabListener(FragmentActivity activity, String tag, Class<T> clz) {
 		mActivity = activity;
 		mTag = tag;
 		mClass = clz;
@@ -29,7 +29,7 @@ public class FragmentTabListener<T extends Fragment>
     // This version supports specifying the container to replace with
     // fragment content new FragmentTabListener<SomeFragment>
     //               (R.id.flContent, this, "first", SomeFragment.class)
-	public FragmentTabListener(int fragmentContainerId, Activity activity,
+	public FragmentTabListener(int fragmentContainerId, FragmentActivity activity,
                                String tag, Class<T> clz) {
 		mActivity = activity;
 		mTag = tag;
@@ -38,8 +38,8 @@ public class FragmentTabListener<T extends Fragment>
 	}
 
 	/* The following are each of the ActionBar.TabListener callbacks */
-	public void onTabSelected(Tab tab, android.app.FragmentTransaction ft) {
-		FragmentTransaction sft = mActivity.getFragmentManager()
+	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+		FragmentTransaction sft = mActivity.getSupportFragmentManager()
             .beginTransaction();
 		// Check if the fragment is already initialized
 		if (mFragment == null) {
@@ -53,8 +53,8 @@ public class FragmentTabListener<T extends Fragment>
 		sft.commit();
 	}
 
-	public void onTabUnselected(Tab tab, android.app.FragmentTransaction ft) {
-		FragmentTransaction sft = mActivity.getFragmentManager()
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+		FragmentTransaction sft = mActivity.getSupportFragmentManager()
             .beginTransaction();
 		if (mFragment != null) {
 			// Detach the fragment, because another one is being attached
@@ -63,7 +63,7 @@ public class FragmentTabListener<T extends Fragment>
 		sft.commit();
 	}
 
-	public void onTabReselected(Tab tab, android.app.FragmentTransaction ft) {
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {
 		// User selected the already selected tab. Usually do nothing.
 	}
 }

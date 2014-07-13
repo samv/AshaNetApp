@@ -1,0 +1,22 @@
+<RelativeLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="wrap_content"
+   style="nav_drawer"
+   >
+
+  <!-- The selection or content -->
+  <TextView
+     android:id="@android:id/text1"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_alignParentLeft="true"
+     android:layout_centerVertical="true"
+     android:paddingTop="8dp"
+     android:paddingBottom="8dp"
+     android:paddingLeft="16dp"
+     android:paddingRight="16dp"
+     style="@style/nav_drawer_item"
+     />
+
+</RelativeLayout>

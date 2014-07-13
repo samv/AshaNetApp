@@ -1,0 +1,20 @@
+<RelativeLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="wrap_content"
+   style="@style/nav_drawer_title"
+   >
+
+  <TextView
+     android:id="@android:id/text1"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_alignParentBottom="true"
+     android:layout_alignParentLeft="true"
+     android:paddingLeft="32dp"
+     android:paddingRight="32dp"
+     android:paddingBottom="32dp"
+     style="@style/nav_drawer_title_text"
+     />
+
+</RelativeLayout>

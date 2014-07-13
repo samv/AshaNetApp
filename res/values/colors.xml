@@ -1,26 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
  <color name="transparent">#00000000</color>
- <color name="black">#2e3436</color>
- <color name="red">#8b1a1a</color>
- <color name="green">#228b22</color>
- <color name="yellow">#8b6508</color>
- <color name="blue">#104e8b</color>
- <color name="magenta">#68228b</color>
- <color name="cyan">#008693</color>
- <color name="white">#ffffdd</color>
- <color name="grey">#7a7a7a</color>
- <color name="orange_red">#cd3700</color>
- <color name="sea_green">#2e8b57</color>
- <color name="gold">#cd950c</color>
- <color name="light_blue">#4f94cd</color>
- <color name="pink">#cd6090</color>
- <color name="marine">#00868b</color>
- <color name="orange">#cd6600</color>
+ <color name="gray7">#121212</color>
+ <color name="w3c_gray">#808080</color>
  <color name="dodger_blue">#1E90FF</color>
  <color name="powder_blue">#B0E0E6</color>
  <color name="steel_blue">#4682B4</color>
  <color name="white_smoke">#F5F5F5</color>
- <color name="dark_orange">#FF8C00</color>
-
+ <color name="royal_blue4">#27408b</color>
+ <color name="gainsboro">#DCDCDC</color>
+ <color name="moccasin">#FFE4B5</color>
+ <color name="burlywood1">#ffd39b</color>
 </resources>
