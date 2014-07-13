@@ -175,6 +175,7 @@
        android:layout_height="wrap_content"
        android:layout_marginTop="4dp"
        android:layout_marginLeft="8dp"
+       android:background="@color/white_smoke"
        style="@style/detail_value"
        />
   </ScrollView>
