@@ -11,8 +11,9 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import org.ashanet.R;
-import org.ashanet.activity.ProjectDetailsActivity;
+import org.ashanet.fragment.ProjectDetailsFragment;
 import org.ashanet.adapter.ProjectListAdapter;
+import org.ashanet.interfaces.FragmentNavigation;
 import org.ashanet.interfaces.ProgressIndicator;
 import org.ashanet.typedef.Project;
 
@@ -23,11 +24,14 @@ public class ProjectListFragment
     public ProjectListAdapter pla;
     private ListView lvProjects;
     private ProgressIndicator pi;
-
+    private FragmentNavigation fn;
+    
     public ProjectListFragment() {}
 
-    public ProjectListFragment(ProgressIndicator pi) {
+    public ProjectListFragment(ProgressIndicator pi, FragmentNavigation fn)
+    {
         this.pi = pi;
+        this.fn = fn;
     }
 
     /** Called when the activity is first created. */
@@ -58,11 +62,8 @@ public class ProjectListFragment
                             long id)
     {
         Log.d("DEBUG", "clicked on item " + position);
-        Intent i = new Intent(getActivity(), ProjectDetailsActivity.class);
         Project p = pla.getItem(position);
-        Log.d("DEBUG", "putting project = " + p.getObjectId());
-        i.putExtra("projectId", p.getObjectId());
-        i.putExtra("projectName", p.getName());
-        startActivity(i);
+        fn.pushFragment(new ProjectDetailsFragment(pi, p),
+                        "viewproj");
     }
 }

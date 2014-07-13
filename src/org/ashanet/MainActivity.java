@@ -1,10 +1,11 @@
-package org.ashanet.activity;
+package org.ashanet;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -18,18 +19,20 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
-import org.ashanet.R;
 import org.ashanet.adapter.NavDrawerAdapter;
 import org.ashanet.fragment.EventListFragment;
 import org.ashanet.fragment.ProjectListFragment;
+import org.ashanet.interfaces.FragmentNavigation;
 import org.ashanet.interfaces.ProgressIndicator;
 import org.ashanet.util.FragmentTabListener;
 
 public class MainActivity
     extends ActionBarActivity
     implements ProgressIndicator,
+               FragmentNavigation,
                ActionBar.OnNavigationListener,
-               NavDrawerAdapter.Callbacks
+               NavDrawerAdapter.Callbacks,
+               FragmentManager.OnBackStackChangedListener
 {
     ProjectListFragment projectsFragment;
     EventListFragment eventsFragment;
@@ -40,6 +43,7 @@ public class MainActivity
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private ListView lvNavDrawer;
+    private ActionBar actionBar;
 
     /** Called when the activity is first created. */
     @Override
@@ -52,7 +56,7 @@ public class MainActivity
 
         Log.d("DEBUG", "ActionBar!");
         // TODO ActionBar should have "verbs" for current fragment
-        //ActionBar actionBar = getActionBarSupport();
+        actionBar = getSupportActionBar();
         //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
         //SpinnerAdapter mSpinnerAdapter = ArrayAdapter.createFromResource
             //(this, R.array.project_verbs,
@@ -85,7 +89,7 @@ public class MainActivity
             public void onDrawerClosed(View view) {
                 Log.d("DEBUG", "Drawer Closed");
                super.onDrawerClosed(view);
-                getActionBar().setTitle(mTitle);
+                actionBar.setTitle(mTitle);
                 // creates call to onPrepareOptionsMenu()
                 invalidateOptionsMenu();
             }
@@ -95,7 +99,7 @@ public class MainActivity
             public void onDrawerOpened(View drawerView) {
                 Log.d("DEBUG", "Drawer Opened");
                 super.onDrawerOpened(drawerView);
-                getActionBar().setTitle(mDrawerTitle);
+                actionBar.setTitle(mDrawerTitle);
                 // creates call to onPrepareOptionsMenu()
                 invalidateOptionsMenu();
             }
@@ -104,9 +108,13 @@ public class MainActivity
         // Set the drawer toggle as the DrawerListener
         Log.d("DEBUG", "mDrawer listener!");
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
-    }
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        getSupportFragmentManager().addOnBackStackChangedListener(this);
+        shouldDisplayHomeUp();
+        chooseFragment(getProjectsFragment(), 0);
+   }
     
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -136,14 +144,14 @@ public class MainActivity
     public Fragment getProjectsFragment() {
         Log.d("DEBUG", "Creating Projects Fragment");
         if (projectsFragment == null)
-            projectsFragment = new ProjectListFragment(this);
+            projectsFragment = new ProjectListFragment(this, this);
         return projectsFragment;
     }
 
     public Fragment getEventsFragment() {
         Log.d("DEBUG", "Creating Events Fragment");
         if (eventsFragment == null)
-            eventsFragment = new EventListFragment(this);
+            eventsFragment = new EventListFragment(this, this);
         return eventsFragment;
     }
 
@@ -171,6 +179,36 @@ public class MainActivity
         Toast.makeText(this, "TODO", Toast.LENGTH_SHORT).show();
         return true;
     }
+    
+    @Override
+    public void onBackStackChanged() {
+        shouldDisplayHomeUp();
+    }
+
+    public void shouldDisplayHomeUp(){
+        //Enable Up button only  if there are entries in the back stack
+        boolean canback =
+            getSupportFragmentManager().getBackStackEntryCount() > 0;
+
+        mDrawerToggle.setDrawerIndicatorEnabled(!canback);
+        Log.d("DEBUG", "Drawer Indicator is " + (!canback ? "ENABLED": "DISABLED"));
+    }
+
+    public void pushFragment(Fragment newFrag, String tag) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.flMain, newFrag);
+        currentFragment = newFrag;
+        ft.addToBackStack(tag);
+        ft.commit();
+    }
+
+    public void popFragment(String tag) {
+        Log.d("DEBUG", "popping fragment: " + tag);
+        // FIXME: Fragment manager does actually let you pick out a
+        // fragment by tag, perhaps this could keep popping until it
+        // finds it.
+        getSupportFragmentManager().popBackStack();
+    }
 
     public void onNounSelected(NavDrawerAdapter.Noun noun) {
         Log.d("DEBUG", "Noun selected: " + noun);
@@ -191,4 +229,12 @@ public class MainActivity
         Log.d("DEBUG", "Action selected: " + action);
         Toast.makeText(this, action + " is TODO", Toast.LENGTH_SHORT).show();
    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        //This method is called when the up button is pressed. Just the pop back stack.
+        Log.d("DEBUG", "Navigated up!");
+        getSupportFragmentManager().popBackStack();
+        return true;
+    }
 }

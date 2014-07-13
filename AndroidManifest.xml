@@ -16,23 +16,13 @@
      android:theme="@style/AppTheme"
      android:icon="@drawable/asha_icon"
      >
-    <activity android:name="org.ashanet.activity.MainActivity"
+    <activity android:name="org.ashanet.MainActivity"
               android:label="@string/title_projects"
               >
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
-    </activity>
-    <activity android:name="org.ashanet.activity.ProjectDetailsActivity"
-              android:label="@string/title_project_details"
-              android:parentActivityName="org.ashanet.activity.MainActivity"
-        >
-    </activity>
-    <activity android:name="org.ashanet.activity.EventDetailsActivity"
-              android:label="@string/title_event_details"
-              android:parentActivityName="org.ashanet.activity.MainActivity"
-              >
     </activity>
   </application>
 </manifest>
