@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
     >
 
   <TextView
@@ -11,7 +12,6 @@
      android:layout_height="wrap_content"
      android:layout_alignParentTop="true"
      android:layout_alignParentLeft="true"
-     android:layout_marginTop="32dp"
      android:layout_marginLeft="16dp"
      style="@style/large.heading"
      />
@@ -22,7 +22,7 @@
      android:layout_height="wrap_content"
      android:layout_alignBottom="@id/tvName"
      android:layout_alignParentRight="true"
-     android:layout_marginRight="8dp"
+     android:layout_marginRight="16dp"
      style="@style/medium"
      />
 
@@ -31,7 +31,6 @@
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
      android:layout_below="@id/tvName"
-     android:layout_alignParentLeft="true"
      android:layout_marginTop="8dp"
      android:layout_alignLeft="@id/tvName"
      style="@style/medium"
@@ -52,9 +51,8 @@
      android:id="@+id/tvAddress"
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
-     android:layout_below="@id/tvWhen"
      android:layout_toRightOf="@id/tvAddressLabel"
-     android:layout_marginTop="16dp"
+     android:layout_alignBottom="@id/tvAddressLabel"
      android:layout_marginLeft="16dp"
      style="@style/small"
      />

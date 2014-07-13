@@ -12,6 +12,7 @@
      android:layout_height="wrap_content"
      android:layout_alignParentLeft="true"
      android:layout_centerVertical="true"
+     android:paddingLeft="8dp"
      android:src="@drawable/gear_icon"
      android:background="@color/gainsboro"
     />
@@ -23,23 +24,10 @@
      android:layout_toRightOf="@id/ivIcon"
      android:layout_centerVertical="true"
      style="@style/global_action_text"
-     android:paddingTop="4dp"
-     android:paddingBottom="4dp"
+     android:paddingTop="8dp"
+     android:paddingBottom="8dp"
      android:paddingLeft="8dp"
      android:paddingRight="8dp"
-     />
-
-  <!-- for items with in-line control -->
-  <ImageButton
-     android:id="@+id/ibControl"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_toRightOf="@android:id/text1"
-     android:layout_alignParentRight="true"
-     android:layout_centerVertical="true"
-     android:paddingRight="16dp"
-     android:src="@drawable/gear_icon"
-     android:background="@color/gainsboro"
      />
 
 </RelativeLayout>

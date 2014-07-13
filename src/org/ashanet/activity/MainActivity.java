@@ -39,6 +39,7 @@ public class MainActivity
     private ActionBarDrawerToggle mDrawerToggle;
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
+    private ListView lvNavDrawer;
 
     /** Called when the activity is first created. */
     @Override
@@ -68,7 +69,7 @@ public class MainActivity
         Log.d("DEBUG", "Nav Drawer Adapter!");
         nav = new NavDrawerAdapter(this, this);
         Log.d("DEBUG", "Navbar ListView");
-        ListView lvNavDrawer = (ListView) findViewById(R.id.lvNavDrawer);
+        lvNavDrawer = (ListView) findViewById(R.id.lvNavDrawer);
         lvNavDrawer.setAdapter(nav);
         lvNavDrawer.setOnItemClickListener(nav);
         mTitle = mDrawerTitle = getTitle();
@@ -146,12 +147,14 @@ public class MainActivity
         return eventsFragment;
     }
 
-    void chooseFragment(Fragment frag) {
+    void chooseFragment(Fragment frag, int position) {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.flMain, frag);
         currentFragment = frag;
         ft.commit();
-    }
+        lvNavDrawer.setItemChecked(position, true);
+        mDrawerLayout.closeDrawer(lvNavDrawer);
+   }
 
     public void setProgressIndicator(int det8, boolean indet8) {
         if (indet8 || ((det8 >= 0) && det8 <= 10000)) {
@@ -164,27 +167,28 @@ public class MainActivity
         }
     }
     
-    @Override
     public boolean onNavigationItemSelected(int position, long itemId) {
-        switch (position) {
-        case 0:
-            chooseFragment(getProjectsFragment());
-            break;
-        case 1:
-            chooseFragment(getEventsFragment());
-            break;
-        default:
-            Toast.makeText(this, "TODO", Toast.LENGTH_SHORT).show();
-            break;
-        }
+        Toast.makeText(this, "TODO", Toast.LENGTH_SHORT).show();
         return true;
     }
 
     public void onNounSelected(NavDrawerAdapter.Noun noun) {
         Log.d("DEBUG", "Noun selected: " + noun);
+        switch (noun) {
+        case PROJECTS:
+            chooseFragment(getProjectsFragment(), nav.getItemId(noun));
+            break;
+        case EVENTS:
+            chooseFragment(getEventsFragment(), nav.getItemId(noun));
+            break;
+        default:
+            Toast.makeText(this, noun + " is TODO", Toast.LENGTH_SHORT).show();
+            break;
+        }
     }
     
     public void onGlobalAction(NavDrawerAdapter.GlobalAction action) {
         Log.d("DEBUG", "Action selected: " + action);
-    }
+        Toast.makeText(this, action + " is TODO", Toast.LENGTH_SHORT).show();
+   }
 }

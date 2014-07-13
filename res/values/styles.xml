@@ -24,6 +24,7 @@
     <style name="AshaActionBar.TitleTextStyle"
            parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
       <item name="android:background">@color/royal_blue4</item>
+      <item name="android:paddingLeft">16dp</item>
     </style>
 
     <style name="AshaActionBarTab"
@@ -82,6 +83,8 @@
 
    <style name="global_action_item">
      <item name="android:background">@color/gainsboro</item>
+     <item name="android:paddingTop">16dp</item>
+     <item name="android:paddingBottom">16dp</item>
    </style>
 
    <style name="nav_drawer_heading" parent="micro">
@@ -110,6 +113,7 @@
 
     <style name="button_cta" parent="button">
       <item name="android:background">@color/moccasin</item>
+      <item name="android:textColor">@color/royal_blue4</item>
     </style>
 
     <style name="button_donate" parent="button">

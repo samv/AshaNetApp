@@ -12,8 +12,8 @@
      android:layout_centerVertical="true"
      android:paddingLeft="16dp"
      android:paddingRight="16dp"
-     android:paddingTop="8dp"
-     android:paddingBottom="4dp"
+     android:paddingTop="16dp"
+     android:paddingBottom="8dp"
      style="@style/nav_drawer_heading"
      />
 

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import org.ashanet.R;
@@ -19,7 +20,7 @@ public class NavDrawerAdapter
     implements AdapterView.OnItemClickListener
 {
     public enum Noun {PROJECTS, EVENTS, CHAPTERS};
-    public enum GlobalAction {LOGIN, LOGOUT, ABOUT, FEEDBACK};
+    public enum GlobalAction {ABOUT, FEEDBACK, LOGINOUT};
     
     public interface Callbacks {
         abstract void onNounSelected(Noun noun);
@@ -30,9 +31,18 @@ public class NavDrawerAdapter
     private int maxNoun;
     private int minAction;
     private int maxAction;
+    private Callbacks cb;
+
+    public int getItemId(Noun noun) {
+        return noun.ordinal() + minNoun;
+    }
+    public int getItemId(GlobalAction action) {
+        return action.ordinal() + minAction;
+    }
 
     public NavDrawerAdapter(Context context, Callbacks cb) {
         super(context, R.layout.drawer_nav_item);
+        this.cb = cb;
 
         Resources rsrc = context.getResources();
 
@@ -76,6 +86,14 @@ public class NavDrawerAdapter
         }
     }
 
+    void setupGlobalAction(View view, int actionId) {
+        ImageView ivIcon = (ImageView)view.findViewById(R.id.ivIcon);
+        ivIcon.setImageResource
+            ((actionId == 0) ? R.drawable.question :
+             (actionId == 1) ? R.drawable.feedback :
+             R.drawable.logged_out);
+    }
+
     public View getView(int position, View convertView, ViewGroup parent)
     {
         View view = convertView;
@@ -93,6 +111,8 @@ public class NavDrawerAdapter
         TextView tvText1 = (TextView)view.findViewById(android.R.id.text1);
         if (ivt == 1)
             tvText1.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+        if (ivt == 3)
+            setupGlobalAction(view, position - minAction);
         tvText1.setText(itemText);
         Log.d("DEBUG", "done");
         return view;
@@ -106,7 +126,16 @@ public class NavDrawerAdapter
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
-        Log.d("DEBUG", "Item " + position + " (" + view + ") clicked");
+        if ((position >= minNoun) && (position <= maxNoun)) {
+            cb.onNounSelected(Noun.values()[position - minNoun]);
+        }
+        else if ((position >= minAction) && (position <= maxAction)) {
+            cb.onGlobalAction(GlobalAction.values()[position - minAction]);
+        }
+        else {
+            Log.d("DEBUG", "Ignoring click to Item " + position + " (" +
+                  view + ")");
+        }
         // TODO
     }
 }

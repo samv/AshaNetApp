@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp"
     >
 
   <TextView
@@ -18,20 +19,10 @@
      />
 
   <TextView
-     android:id="@+id/tvState"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_below="@id/tvName"
-     android:layout_alignParentRight="true"
-     android:layout_marginRight="8dp"
-     style="@style/list_detail"
-     />
-
-  <TextView
      android:id="@+id/tvTypeLabel"
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
-     android:layout_below="@id/tvState"
+     android:layout_below="@id/tvName"
      android:layout_alignParentLeft="true"
      android:layout_marginTop="4dp"
      android:layout_marginLeft="8dp"
@@ -43,10 +34,20 @@
      android:id="@+id/tvTypeName"
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
-     android:layout_below="@id/tvState"
+     android:layout_below="@id/tvName"
      android:layout_toRightOf="@id/tvTypeLabel"
      android:layout_marginTop="4dp"
      android:layout_marginLeft="8dp"
+     style="@style/list_detail"
+     />
+
+  <TextView
+     android:id="@+id/tvState"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_below="@id/tvName"
+     android:layout_alignParentRight="true"
+     android:layout_marginRight="8dp"
      style="@style/list_detail"
      />
 
