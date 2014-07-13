@@ -1,0 +1,3 @@
+[submodule "ext/ParseUI-Android"]
+	path = ext/ParseUI-Android
+	url = /home/samv/projects/codepath/ParseUI-Android
