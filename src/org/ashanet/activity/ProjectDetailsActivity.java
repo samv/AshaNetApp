@@ -75,8 +75,10 @@ public class ProjectDetailsActivity
         ((TextView)findViewById(R.id.tvFunds)).setText
             (String.format("$%.0f", project.getTotalFunds()));
         ((TextView)findViewById(R.id.tvArea)).setText(project.getState());
-        ((WebView)findViewById(R.id.tvDescription)).loadData
-            (project.getDescription(), "text/html", null);
+        WebView wvDescription = ((WebView)findViewById(R.id.wvDescription));
+        wvDescription.loadData(project.getDescription(), "text/html", null);
+        wvDescription.setBackgroundColor(0x00000000);
+        wvDescription.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
         ((TextView)findViewById(R.id.tvSecondFocus)).setText
             (project.getSecondaryFocus());
     }

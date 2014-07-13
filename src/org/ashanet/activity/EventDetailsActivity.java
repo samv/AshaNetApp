@@ -92,8 +92,10 @@ public class EventDetailsActivity
         String address = event.getAddress();
         ((TextView)findViewById(R.id.tvAddress)).setText
             (address == null ? "t.b.a." : address);
-        ((WebView)findViewById(R.id.tvDescription)).loadData
-            (event.getDescription(), "text/html", null);
+        WebView wvDescription = ((WebView)findViewById(R.id.wvDescription));
+        wvDescription.loadData(event.getDescription(), "text/html", null);
+        wvDescription.setBackgroundColor(0x00000000);
+        wvDescription.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
         Date eventStart = event.getEventStart();
         ((TextView)findViewById(R.id.tvEventStart)).setText
             (eventStart == null ? "t.b.a." :
