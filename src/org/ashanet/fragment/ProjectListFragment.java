@@ -16,6 +16,7 @@ import org.ashanet.adapter.ProjectListAdapter;
 import org.ashanet.interfaces.FragmentNavigation;
 import org.ashanet.interfaces.ProgressIndicator;
 import org.ashanet.typedef.Project;
+import org.ashanet.util.TypeMaps;
 
 public class ProjectListFragment
     extends Fragment
@@ -25,20 +26,23 @@ public class ProjectListFragment
     private ListView lvProjects;
     private ProgressIndicator pi;
     private FragmentNavigation fn;
+    private TypeMaps tm;
     
     public ProjectListFragment() {}
 
-    public ProjectListFragment(ProgressIndicator pi, FragmentNavigation fn)
+    public ProjectListFragment(ProgressIndicator pi, FragmentNavigation fn,
+                               TypeMaps tm)
     {
         this.pi = pi;
         this.fn = fn;
+        this.tm = tm;
     }
 
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pla = new ProjectListAdapter(getActivity(), pi);
+        pla = new ProjectListAdapter(getActivity(), pi, tm);
         pla.setTextKey("name");
     }
 
@@ -64,6 +68,7 @@ public class ProjectListFragment
         Log.d("DEBUG", "clicked on item " + position);
         Project p = pla.getItem(position);
         fn.pushFragment
-            (new ProjectDetailsFragment(pi, p), R.string.title_event_details);
+            (new ProjectDetailsFragment(pi, p, tm),
+             R.string.title_event_details);
     }
 }

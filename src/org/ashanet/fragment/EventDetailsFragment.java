@@ -25,6 +25,7 @@ import java.util.Locale;
 import org.ashanet.R;
 import org.ashanet.interfaces.ProgressIndicator;
 import org.ashanet.typedef.Event;
+import org.ashanet.util.TypeMaps;
 
 public class EventDetailsFragment
     extends Fragment
@@ -35,10 +36,12 @@ public class EventDetailsFragment
     Button btnGetTickets;
     ProgressIndicator pi;
     View frag;
+    TypeMaps tm;
 
-    public EventDetailsFragment(ProgressIndicator pi, Event e) {
+    public EventDetailsFragment(ProgressIndicator pi, Event e, TypeMaps tm) {
         this.pi = pi;
         event = e;
+        this.tm = tm;
     }
 
     @Override

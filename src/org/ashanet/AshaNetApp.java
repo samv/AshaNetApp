@@ -8,8 +8,13 @@ import com.parse.ParseObject;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import org.ashanet.typedef.Chapter;
 import org.ashanet.typedef.Event;
+import org.ashanet.typedef.FocusType;
 import org.ashanet.typedef.Project;
+import org.ashanet.typedef.ProjectType;
+import org.ashanet.typedef.State;
+import org.ashanet.typedef.Status;
 
 public class AshaNetApp extends Application {
 
@@ -30,7 +35,6 @@ public class AshaNetApp extends Application {
             parseAppId = lnr.readLine();
             parseClientKey = lnr.readLine();
 
-
             Parse.initialize(this, parseAppId, parseClientKey);
             Log.d("DEBUG", "Successfully initialized");
         }
@@ -42,5 +46,10 @@ public class AshaNetApp extends Application {
     private void registerClasses() {
         ParseObject.registerSubclass(Project.class);
         ParseObject.registerSubclass(Event.class);
+        ParseObject.registerSubclass(Chapter.class);
+        ParseObject.registerSubclass(FocusType.class);
+        ParseObject.registerSubclass(ProjectType.class);
+        ParseObject.registerSubclass(State.class);
+        ParseObject.registerSubclass(Status.class);
     }
 }

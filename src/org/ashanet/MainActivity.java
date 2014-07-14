@@ -23,11 +23,13 @@ import com.parse.ParseUser;
 import org.ashanet.adapter.NavDrawerAdapter;
 import org.ashanet.fragment.AboutFragment;
 import org.ashanet.fragment.EventListFragment;
+import org.ashanet.fragment.LoadingFragment;
 import org.ashanet.fragment.LoginFragment;
 import org.ashanet.fragment.ProjectListFragment;
 import org.ashanet.interfaces.FragmentNavigation;
 import org.ashanet.interfaces.ProgressIndicator;
 import org.ashanet.util.FragmentTabListener;
+import org.ashanet.util.TypeMaps;
 
 public class MainActivity
     extends ActionBarActivity
@@ -39,6 +41,7 @@ public class MainActivity
 {
     ProjectListFragment projectsFragment;
     EventListFragment eventsFragment;
+    LoadingFragment loadingFragment;
     Fragment currentFragment;
     NavDrawerAdapter nav;
     private DrawerLayout mDrawerLayout;
@@ -47,6 +50,7 @@ public class MainActivity
     private CharSequence mTitle;
     private ListView lvNavDrawer;
     private ActionBar actionBar;
+    public TypeMaps typeMaps;
 
     /** Called when the activity is first created. */
     @Override
@@ -69,6 +73,8 @@ public class MainActivity
         Log.d("DEBUG", "Nav Drawer!");
         setupNavDrawer();
         Log.d("DEBUG", "Nav Drawer Done!");
+        typeMaps = new TypeMaps();
+        chooseFragment(getLoadingFragment(), 0);
     }
 
     private void setupNavDrawer() {
@@ -117,7 +123,6 @@ public class MainActivity
 
         getSupportFragmentManager().addOnBackStackChangedListener(this);
         shouldDisplayHomeUp();
-        chooseFragment(getProjectsFragment(), 0);
    }
     
     @Override
@@ -148,19 +153,27 @@ public class MainActivity
     public Fragment getProjectsFragment() {
         Log.d("DEBUG", "Creating Projects Fragment");
         if (projectsFragment == null)
-            projectsFragment = new ProjectListFragment(this, this);
+            projectsFragment = new ProjectListFragment(this, this, typeMaps);
         return projectsFragment;
     }
 
     public Fragment getEventsFragment() {
         Log.d("DEBUG", "Creating Events Fragment");
         if (eventsFragment == null)
-            eventsFragment = new EventListFragment(this, this);
+            eventsFragment = new EventListFragment(this, this, typeMaps);
         return eventsFragment;
     }
 
+    public Fragment getLoadingFragment() {
+        Log.d("DEBUG", "Creating Loading Fragment");
+        if (loadingFragment == null)
+            loadingFragment = new LoadingFragment(this, this, typeMaps);
+        return loadingFragment;
+    }
+
     void chooseFragment(Fragment frag, int position) {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction ft = getSupportFragmentManager()
+            .beginTransaction();
         ft.replace(R.id.flMain, frag);
         currentFragment = frag;
         ft.commit();
@@ -199,11 +212,16 @@ public class MainActivity
     }
 
     public void pushFragment(Fragment newFrag, int titleResourceId) {
+        Log.d("DEBUG", "push Fragment: " + newFrag);
         String fragTag = getResources().getString(titleResourceId);
+        Log.d("DEBUG", "Making a new '" + fragTag + "'");
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        Log.d("DEBUG", "ft.replace()");
         ft.replace(R.id.flMain, newFrag);
         currentFragment = newFrag;
+        Log.d("DEBUG", "ft.addToBackStack()");
         ft.addToBackStack(fragTag);
+        Log.d("DEBUG", "ft.commit()");
         ft.commit();
     }
 
@@ -212,8 +230,10 @@ public class MainActivity
         // FIXME: Fragment manager does actually let you pick out a
         // fragment by tag, perhaps this could keep popping until it
         // finds it.
-        getSupportFragmentManager().popBackStack();
-
+        if (currentFragment == loadingFragment)
+            chooseFragment(getProjectsFragment(), 0);
+        else
+            getSupportFragmentManager().popBackStack();
     }
 
     public void onNounSelected(NavDrawerAdapter.Noun noun) {

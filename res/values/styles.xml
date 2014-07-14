@@ -159,4 +159,15 @@
     <style name="about_body" parent="android:Widget.WebView">
     </style>
 
+    <style name="loading_screen" parent="body">
+    </style>
+
+    <style name="loading_list" parent="android:Widget.ListView">
+      <item name="android:background">@color/white_smoke</item>
+    </style>
+
+    <style name="loading_message" parent="small">
+      <item name="android:background">@color/white_smoke</item>
+    </style>
+
 </resources>

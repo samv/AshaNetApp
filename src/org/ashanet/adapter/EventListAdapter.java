@@ -13,6 +13,7 @@ import java.util.List;
 import org.ashanet.R;
 import org.ashanet.interfaces.ProgressIndicator;
 import org.ashanet.typedef.Event;
+import org.ashanet.util.TypeMaps;
 
 // fixme: parts of this could probably be merged with
 //        ProjectListAdapter as a generic, so that just 
@@ -22,13 +23,15 @@ public class EventListAdapter
     implements ParseQueryAdapter.OnQueryLoadListener<Event>
 {
     ProgressIndicator pi;
-    public EventListAdapter(Context context, ProgressIndicator pi)
+    TypeMaps tm;
+    public EventListAdapter(Context context, ProgressIndicator pi, TypeMaps tm)
     {
         super(context, Event.class, R.layout.view_event);
         if (pi != null) {
             addOnQueryLoadListener(this);
             this.pi = pi;
         }
+        this.tm = tm;
         Log.d("DEBUG", "new EventListAdapter");
     }
 

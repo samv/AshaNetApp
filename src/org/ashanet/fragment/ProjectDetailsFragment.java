@@ -17,6 +17,8 @@ import com.parse.ParseQuery;
 import org.ashanet.R;
 import org.ashanet.interfaces.ProgressIndicator;
 import org.ashanet.typedef.Project;
+import org.ashanet.typedef.FocusType;
+import org.ashanet.util.TypeMaps;
 
 public class ProjectDetailsFragment
     extends Fragment
@@ -24,11 +26,15 @@ public class ProjectDetailsFragment
     Intent intent;
     Project project;
     ProgressIndicator pi;
+    TypeMaps tm;
     View frag;
 
-    public ProjectDetailsFragment(ProgressIndicator pi, Project p) {
+    public ProjectDetailsFragment(ProgressIndicator pi, Project p,
+                                  TypeMaps tm)
+    {
         this.pi = pi;
         project = p;
+        this.tm = tm;
     }
 
     @Override
@@ -52,11 +58,12 @@ public class ProjectDetailsFragment
         // TODO - set the project name in the action bar
         //((TextView)findViewById(R.id.tvName)).setText(project.getName());
         ((TextView)frag.findViewById(R.id.tvTypeName)).setText
-            (String.format("%d", project.getProjectTypeId()));
-        ((TextView)frag.findViewById(R.id.tvFocus)).setText
-            (String.format("%d", project.getFocusId()));
+            (tm.getProjectType(project.getProjectTypeId()).getTitle());
+        FocusType ft = tm.getFocusType(project.getFocusId());
+        TextView tvFocus = (TextView) frag.findViewById(R.id.tvFocus);
+        tvFocus.setText((ft != null) ? ft.getTitle() : "(unknown)");
         ((TextView)frag.findViewById(R.id.tvChapter)).setText
-            (project.getChapterOid());
+            (tm.getChapter(project.getChapterOid()).getName());
         ((TextView)frag.findViewById(R.id.tvFunds)).setText
             (String.format("$%.0f", project.getTotalFunds()));
         ((TextView)frag.findViewById(R.id.tvArea)).setText(project.getState());

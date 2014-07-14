@@ -13,19 +13,22 @@ import java.util.List;
 import org.ashanet.R;
 import org.ashanet.interfaces.ProgressIndicator;
 import org.ashanet.typedef.Project;
+import org.ashanet.util.TypeMaps;
 
 public class ProjectListAdapter
     extends ParseQueryAdapter<Project>
     implements ParseQueryAdapter.OnQueryLoadListener<Project>
 {
     ProgressIndicator pi;
-    public ProjectListAdapter(Context context, ProgressIndicator pi)
+    TypeMaps tm;
+    public ProjectListAdapter(Context context, ProgressIndicator pi, TypeMaps tm)
     {
         super(context, Project.class, R.layout.view_project);
         if (pi != null) {
             addOnQueryLoadListener(this);
             this.pi = pi;
         }
+        this.tm = tm;
         Log.d("DEBUG", "new ProjectListAdapter");
     }
 
@@ -37,9 +40,9 @@ public class ProjectListAdapter
         ((TextView)v.findViewById(R.id.tvName)).setText(X.getName());
         ((TextView)v.findViewById(R.id.tvState)).setText(X.getState());
         ((TextView)v.findViewById(R.id.tvTypeName)).setText
-            (Integer.toOctalString(X.getProjectTypeId()));
+            (tm.getProjectType(X.getProjectTypeId()).getTitle());
         ((TextView)v.findViewById(R.id.tvFundedBy)).setText
-            (X.getChapterOid());
+            (tm.getChapter(X.getChapterOid()).getName());
         return v;
     }
 

@@ -42,5 +42,6 @@
     <string name="msg_logged_in">Logged in as %s</string>
 
     <string name="title_about">About Asha</string>
+    <string name="title_loading">Loading Data</string>
 
 </resources>
