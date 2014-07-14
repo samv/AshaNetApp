@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    style="@style/login_screen"             
+    >
+
+  <TextView
+     android:id="@+id/tvUserNameLabel"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_marginBottom="8dp"
+     android:layout_marginTop="64dp"
+     android:layout_marginLeft="32dp"
+     android:layout_alignParentTop="true"
+     android:layout_alignParentLeft="true"
+     android:text="@string/label_username"
+     style="@style/login_label"
+     />
+
+  <EditText
+     android:id="@+id/etUserName"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_below="@id/tvUserNameLabel"
+     android:layout_centerHorizontal="true"
+     android:layout_marginTop="8dp"
+     android:layout_marginLeft="32dp"
+     android:layout_marginRight="32dp"
+     android:hint="@string/hint_username"
+     style="@style/login_form"
+     />
+
+  <TextView
+     android:id="@+id/tvPasswordLabel"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_below="@id/etUserName"
+     android:layout_marginTop="64dp"
+     android:layout_marginBottom="8dp"
+     android:layout_marginLeft="32dp"
+     android:text="@string/label_password"
+     style="@style/login_label"
+     />
+
+  <EditText
+     android:id="@+id/etPassword"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_below="@id/tvPasswordLabel"
+     android:layout_centerHorizontal="true"
+     android:layout_marginTop="8dp"
+     android:layout_marginLeft="32dp"
+     android:layout_marginRight="32dp"
+     android:inputType="textPassword"
+     android:hint="@string/hint_password"
+     style="@style/login_form"
+     />
+
+  <Button
+     android:id="@+id/btnLogin"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_below="@id/etPassword"
+     android:layout_marginTop="64dp"
+     android:layout_centerHorizontal="true"
+     android:text="@string/cta_login"
+     />
+
+  <TextView
+     android:id="@+id/tvLoginError"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_below="@id/btnLogin"
+     android:layout_marginTop="16dp"
+     android:layout_marginBottom="16dp"
+     android:layout_marginLeft="16dp"
+     android:layout_marginRight="16dp"
+     style="@style/login_error"
+     />
+
+</RelativeLayout>

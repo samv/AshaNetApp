@@ -31,4 +31,14 @@
     <string name="nav_title">Asha</string>
     <string name="nav_title_find">Find:</string>
 
+    <string name="title_login">Volunteer/Admin Login</string>
+    <string name="label_username">AshaNet Parse.com Username:</string>
+    <string name="hint_username">username</string>
+    <string name="label_password">Password:</string>
+    <string name="hint_password">password</string>
+    <string name="cta_login">Log In</string>
+    <string name="global_action_login">Log In</string>
+    <string name="global_action_logout">Log Out</string>
+    <string name="msg_logged_in">Logged in as %s</string>
+
 </resources>

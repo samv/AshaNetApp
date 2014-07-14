@@ -19,8 +19,10 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
+import com.parse.ParseUser;
 import org.ashanet.adapter.NavDrawerAdapter;
 import org.ashanet.fragment.EventListFragment;
+import org.ashanet.fragment.LoginFragment;
 import org.ashanet.fragment.ProjectListFragment;
 import org.ashanet.interfaces.FragmentNavigation;
 import org.ashanet.interfaces.ProgressIndicator;
@@ -88,7 +90,7 @@ public class MainActivity
              * state. */
             public void onDrawerClosed(View view) {
                 Log.d("DEBUG", "Drawer Closed");
-               super.onDrawerClosed(view);
+                super.onDrawerClosed(view);
                 actionBar.setTitle(mTitle);
                 // creates call to onPrepareOptionsMenu()
                 invalidateOptionsMenu();
@@ -100,6 +102,7 @@ public class MainActivity
                 Log.d("DEBUG", "Drawer Opened");
                 super.onDrawerOpened(drawerView);
                 actionBar.setTitle(mDrawerTitle);
+                nav.setUser(ParseUser.getCurrentUser());
                 // creates call to onPrepareOptionsMenu()
                 invalidateOptionsMenu();
             }
@@ -187,27 +190,29 @@ public class MainActivity
 
     public void shouldDisplayHomeUp(){
         //Enable Up button only  if there are entries in the back stack
-        boolean canback =
-            getSupportFragmentManager().getBackStackEntryCount() > 0;
-
+        FragmentManager fm = getSupportFragmentManager();
+        boolean canback = fm.getBackStackEntryCount() > 0;
         mDrawerToggle.setDrawerIndicatorEnabled(!canback);
         Log.d("DEBUG", "Drawer Indicator is " + (!canback ? "ENABLED": "DISABLED"));
+        actionBar.setTitle(canback ? "something else" : mTitle);
     }
 
-    public void pushFragment(Fragment newFrag, String tag) {
+    public void pushFragment(Fragment newFrag, int titleResourceId) {
+        String fragTag = getResources().getString(titleResourceId);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.flMain, newFrag);
         currentFragment = newFrag;
-        ft.addToBackStack(tag);
+        ft.addToBackStack(fragTag);
         ft.commit();
     }
 
-    public void popFragment(String tag) {
-        Log.d("DEBUG", "popping fragment: " + tag);
+    public void popFragment(int titleResourceId) {
+        Log.d("DEBUG", "popping fragment: " + titleResourceId);
         // FIXME: Fragment manager does actually let you pick out a
         // fragment by tag, perhaps this could keep popping until it
         // finds it.
         getSupportFragmentManager().popBackStack();
+
     }
 
     public void onNounSelected(NavDrawerAdapter.Noun noun) {
@@ -224,10 +229,31 @@ public class MainActivity
             break;
         }
     }
+
+    public void doLogout() {
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        ParseUser.logOut();
+        if (currentUser != null)
+            Toast.makeText(this, "Logged out " + currentUser.getUsername(),
+                           Toast.LENGTH_LONG).show();
+        currentUser = ParseUser.getCurrentUser();
+    }
     
     public void onGlobalAction(NavDrawerAdapter.GlobalAction action) {
         Log.d("DEBUG", "Action selected: " + action);
-        Toast.makeText(this, action + " is TODO", Toast.LENGTH_SHORT).show();
+        switch (action) {
+        case LOGOUT:
+            doLogout();
+            mDrawerLayout.closeDrawer(lvNavDrawer);
+            break;
+        case LOGIN:
+            pushFragment(new LoginFragment(this, this), R.string.title_login);
+            mDrawerLayout.closeDrawer(lvNavDrawer);
+            break;
+        default:
+            Toast.makeText(this, action + " is TODO",
+                           Toast.LENGTH_SHORT).show();
+        }
    }
 
     @Override

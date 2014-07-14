@@ -9,7 +9,6 @@
     <string-array name="global_actions">
       <item>About</item>   
       <item>Send Feedback</item>
-      <item>Log In</item>
     </string-array>
 
     <string-array name="project_verbs">

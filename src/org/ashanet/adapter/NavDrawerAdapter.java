@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.parse.ParseUser;
 import org.ashanet.R;
 
 public class NavDrawerAdapter
@@ -20,7 +21,7 @@ public class NavDrawerAdapter
     implements AdapterView.OnItemClickListener
 {
     public enum Noun {PROJECTS, EVENTS, CHAPTERS};
-    public enum GlobalAction {ABOUT, FEEDBACK, LOGINOUT};
+    public enum GlobalAction {ABOUT, FEEDBACK, LOGIN, LOGOUT};
     
     public interface Callbacks {
         abstract void onNounSelected(Noun noun);
@@ -32,19 +33,21 @@ public class NavDrawerAdapter
     private int minAction;
     private int maxAction;
     private Callbacks cb;
+    ParseUser currentUser;
+    Resources rsrc;
 
     public int getItemId(Noun noun) {
         return noun.ordinal() + minNoun;
     }
     public int getItemId(GlobalAction action) {
-        return action.ordinal() + minAction;
+        return ((action == GlobalAction.LOGOUT) ? 2 :
+                action.ordinal() + minAction);
     }
 
     public NavDrawerAdapter(Context context, Callbacks cb) {
         super(context, R.layout.drawer_nav_item);
         this.cb = cb;
-
-        Resources rsrc = context.getResources();
+        rsrc = context.getResources();
 
         add(rsrc.getString(R.string.nav_title));
 
@@ -56,8 +59,12 @@ public class NavDrawerAdapter
 
         String[] actions = rsrc.getStringArray(R.array.global_actions);
         minAction = getCount();
-        maxAction = getCount() + actions.length - 1;
+        maxAction = getCount() + actions.length;  // plus login/out
         addAll(actions);
+        currentUser = ParseUser.getCurrentUser();
+        add(rsrc.getString
+            ((currentUser == null) ? R.string.global_action_login :
+             R.string.global_action_logout));
     }
 
     public int getViewTypeCount() {
@@ -88,10 +95,20 @@ public class NavDrawerAdapter
 
     void setupGlobalAction(View view, int actionId) {
         ImageView ivIcon = (ImageView)view.findViewById(R.id.ivIcon);
-        ivIcon.setImageResource
-            ((actionId == 0) ? R.drawable.question :
-             (actionId == 1) ? R.drawable.feedback :
-             R.drawable.logged_out);
+        int resourceId;
+        switch(actionId) {
+        case 2:
+            resourceId = 
+                ((currentUser == null) ? R.drawable.logged_out :
+                 R.drawable.logged_in);
+            break;
+        default:
+            resourceId =
+                ((actionId == 0) ? R.drawable.question :
+                 (actionId == 1) ? R.drawable.feedback :
+                 -1);
+        }
+        ivIcon.setImageResource(resourceId);
     }
 
     public View getView(int position, View convertView, ViewGroup parent)
@@ -129,13 +146,29 @@ public class NavDrawerAdapter
         if ((position >= minNoun) && (position <= maxNoun)) {
             cb.onNounSelected(Noun.values()[position - minNoun]);
         }
-        else if ((position >= minAction) && (position <= maxAction)) {
+        else if ((position >= minAction) && (position < maxAction)) {
             cb.onGlobalAction(GlobalAction.values()[position - minAction]);
+        }
+        else if (position == maxAction) {
+            cb.onGlobalAction((ParseUser.getCurrentUser() == null) ?
+                              GlobalAction.LOGIN : GlobalAction.LOGOUT);
         }
         else {
             Log.d("DEBUG", "Ignoring click to Item " + position + " (" +
                   view + ")");
         }
         // TODO
+    }
+
+    public void setUser(ParseUser user) {
+        if (currentUser != user) {
+            remove(rsrc.getString((currentUser == null) ?
+                                  R.string.global_action_login :
+                                  R.string.global_action_logout));
+            add(rsrc.getString((user == null) ?
+                                R.string.global_action_login :
+                                R.string.global_action_logout));
+            currentUser = user;
+        }
     }
 }

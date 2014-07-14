@@ -138,6 +138,20 @@
 
     <style name="detail_value" parent="medium">
     </style>
+    
+    <style name="login_screen" parent="body">
+    </style>
 
+    <style name="login_form" parent="android:Widget.EditText">
+    </style>
+
+    <style name="login_label" parent="small">
+     <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="login_error" parent="medium">
+      <item name="android:textColor">@color/tomato</item>
+    </style>
+    
     
 </resources>
