@@ -68,7 +68,6 @@ public class ProjectListFragment
         Log.d("DEBUG", "clicked on item " + position);
         Project p = pla.getItem(position);
         fn.pushFragment
-            (new ProjectDetailsFragment(pi, p, tm),
-             R.string.title_event_details);
+            (new ProjectDetailsFragment(pi, p, tm), -1, p.getName());
     }
 }

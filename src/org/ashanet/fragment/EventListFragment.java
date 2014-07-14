@@ -69,7 +69,6 @@ public class EventListFragment
         Log.d("DEBUG", "clicked on item " + position);
         Event e = ela.getItem(position);
         fn.pushFragment
-            (new EventDetailsFragment(pi, e, tm),
-             R.string.title_project_details);
+            (new EventDetailsFragment(pi, e, tm), -1, e.getName());
     }
 }

@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 import com.parse.ParseUser;
+import java.util.ArrayList;
 import org.ashanet.adapter.NavDrawerAdapter;
 import org.ashanet.fragment.AboutFragment;
 import org.ashanet.fragment.EventListFragment;
@@ -51,6 +52,7 @@ public class MainActivity
     private ListView lvNavDrawer;
     private ActionBar actionBar;
     public TypeMaps typeMaps;
+    private ArrayList<String> fragTitles;
 
     /** Called when the activity is first created. */
     @Override
@@ -70,6 +72,7 @@ public class MainActivity
              //android.R.layout.simple_spinner_dropdown_item);
         //actionBar.setListNavigationCallbacks(mSpinnerAdapter, this);
 
+        fragTitles = new ArrayList<String>();
         Log.d("DEBUG", "Nav Drawer!");
         setupNavDrawer();
         Log.d("DEBUG", "Nav Drawer Done!");
@@ -196,7 +199,7 @@ public class MainActivity
         Toast.makeText(this, "TODO", Toast.LENGTH_SHORT).show();
         return true;
     }
-    
+
     @Override
     public void onBackStackChanged() {
         shouldDisplayHomeUp();
@@ -208,12 +211,16 @@ public class MainActivity
         boolean canback = fm.getBackStackEntryCount() > 0;
         mDrawerToggle.setDrawerIndicatorEnabled(!canback);
         Log.d("DEBUG", "Drawer Indicator is " + (!canback ? "ENABLED": "DISABLED"));
-        actionBar.setTitle(canback ? "something else" : mTitle);
+        actionBar.setTitle(canback ? fragTitles.get(fragTitles.size()-1) : mTitle);
     }
 
-    public void pushFragment(Fragment newFrag, int titleResourceId) {
+    public void pushFragment(Fragment newFrag, int titleResourceId,
+                             String newFragTag)
+    {
         Log.d("DEBUG", "push Fragment: " + newFrag);
-        String fragTag = getResources().getString(titleResourceId);
+        String fragTag = (newFragTag != null) ? newFragTag :
+            getResources().getString(titleResourceId);
+        fragTitles.add(fragTag);
         Log.d("DEBUG", "Making a new '" + fragTag + "'");
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         Log.d("DEBUG", "ft.replace()");
@@ -230,10 +237,14 @@ public class MainActivity
         // FIXME: Fragment manager does actually let you pick out a
         // fragment by tag, perhaps this could keep popping until it
         // finds it.
-        if (currentFragment == loadingFragment)
+        if (currentFragment == loadingFragment) {
             chooseFragment(getProjectsFragment(), 0);
-        else
+        }
+        else {
             getSupportFragmentManager().popBackStack();
+            if (fragTitles.size() > 0)
+                fragTitles.remove(fragTitles.size() - 1);
+        }
     }
 
     public void onNounSelected(NavDrawerAdapter.Noun noun) {
@@ -268,13 +279,12 @@ public class MainActivity
             mDrawerLayout.closeDrawer(lvNavDrawer);
             break;
         case LOGIN:
-            pushFragment(new LoginFragment(this, this), R.string.title_login);
+            pushFragment
+                (new LoginFragment(this, this), R.string.title_login, null);
             mDrawerLayout.closeDrawer(lvNavDrawer);
             break;
         case ABOUT:
-            Log.d("DEBUG", "pushFragment!");
-            pushFragment(new AboutFragment(this), R.string.title_about);
-            Log.d("DEBUG", "Closing nav drawer");
+            pushFragment(new AboutFragment(this), R.string.title_about, null);
             mDrawerLayout.closeDrawer(lvNavDrawer);
             break;
         default:
