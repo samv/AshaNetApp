@@ -41,4 +41,6 @@
     <string name="global_action_logout">Log Out</string>
     <string name="msg_logged_in">Logged in as %s</string>
 
+    <string name="title_about">About Asha</string>
+
 </resources>

@@ -21,6 +21,7 @@ import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 import com.parse.ParseUser;
 import org.ashanet.adapter.NavDrawerAdapter;
+import org.ashanet.fragment.AboutFragment;
 import org.ashanet.fragment.EventListFragment;
 import org.ashanet.fragment.LoginFragment;
 import org.ashanet.fragment.ProjectListFragment;
@@ -248,6 +249,12 @@ public class MainActivity
             break;
         case LOGIN:
             pushFragment(new LoginFragment(this, this), R.string.title_login);
+            mDrawerLayout.closeDrawer(lvNavDrawer);
+            break;
+        case ABOUT:
+            Log.d("DEBUG", "pushFragment!");
+            pushFragment(new AboutFragment(this), R.string.title_about);
+            Log.d("DEBUG", "Closing nav drawer");
             mDrawerLayout.closeDrawer(lvNavDrawer);
             break;
         default:
