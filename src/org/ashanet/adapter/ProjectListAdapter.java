@@ -12,6 +12,7 @@ import com.parse.ParseQueryAdapter;
 import java.util.List;
 import org.ashanet.R;
 import org.ashanet.interfaces.ProgressIndicator;
+import org.ashanet.typedef.Chapter;
 import org.ashanet.typedef.Project;
 import org.ashanet.util.TypeMaps;
 
@@ -41,8 +42,9 @@ public class ProjectListAdapter
         ((TextView)v.findViewById(R.id.tvState)).setText(X.getState());
         ((TextView)v.findViewById(R.id.tvTypeName)).setText
             (tm.getProjectType(X.getProjectTypeId()).getTitle());
+        Chapter chapter = tm.getChapter(X.getChapterOid());
         ((TextView)v.findViewById(R.id.tvFundedBy)).setText
-            (tm.getChapter(X.getChapterOid()).getName());
+            ((chapter != null) ? chapter.getName() : "(not funded yet)");
         return v;
     }
 

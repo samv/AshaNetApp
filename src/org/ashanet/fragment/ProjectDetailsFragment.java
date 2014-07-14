@@ -16,6 +16,7 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import org.ashanet.R;
 import org.ashanet.interfaces.ProgressIndicator;
+import org.ashanet.typedef.Chapter;
 import org.ashanet.typedef.Project;
 import org.ashanet.typedef.FocusType;
 import org.ashanet.util.TypeMaps;
@@ -62,8 +63,9 @@ public class ProjectDetailsFragment
         FocusType ft = tm.getFocusType(project.getFocusId());
         TextView tvFocus = (TextView) frag.findViewById(R.id.tvFocus);
         tvFocus.setText((ft != null) ? ft.getTitle() : "(unknown)");
+        Chapter chapter = tm.getChapter(project.getChapterOid());
         ((TextView)frag.findViewById(R.id.tvChapter)).setText
-            (tm.getChapter(project.getChapterOid()).getName());
+            ((chapter != null) ? chapter.getName() : "(not funded yet)");
         ((TextView)frag.findViewById(R.id.tvFunds)).setText
             (String.format("$%.0f", project.getTotalFunds()));
         ((TextView)frag.findViewById(R.id.tvArea)).setText(project.getState());
