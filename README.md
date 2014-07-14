@@ -20,9 +20,9 @@ equivalence with https://github.com/sagpatil/AshaNet_iOS
 
 * ☐ As a chapter member, I can donate to the chapter general fund (#8)
 
-* ☐ As a user, I can control application settings (#10)
+* ☑ As a user, I can control application settings (#10)
 
-* ☐ As an administrator, I can log in to the app. (#9)
+* ☑ As an administrator, I can log in to the app. (#9)
 
   * ☐ As an administrator, I can create new and edit existing events (#12)
 
