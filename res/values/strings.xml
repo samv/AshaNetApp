@@ -46,5 +46,18 @@
     <string name="title_loading">Loading Data</string>
 
     <string name="splash_subtitle">BRINGING HOPE THROUGH EDUCATION</string>
+    <string name="donate_subtitle">DONATE</string>
+    <string name="title_pay_via">PAY WITH</string>
+
+    <string name="copy_disclaimer">Note: Donations made through this
+      form are tax-deductible (only) in the US under Section 501(c)(3)
+      of the IRS Code.</string>
+
+    <string name="cta_generic">CONTINUE</string>
+
+    <string name="copy_rsvp_promise">WE\'LL SIGN YOU UP!</string>
+
+    <string name="field_enter">ENTER YOUR</string>
+    <string name="cta_rsvp">SUBMIT</string>
 
 </resources>

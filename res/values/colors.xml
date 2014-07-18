@@ -7,9 +7,15 @@
   <color name="powder_blue">#B0E0E6</color>
   <color name="steel_blue">#4682B4</color>
   <color name="white_smoke">#F5F5F5</color>
+  <color name="chalk">#ffffff</color>
   <color name="royal_blue4">#27408b</color>
   <color name="gainsboro">#DCDCDC</color>
   <color name="moccasin">#FFE4B5</color>
   <color name="burlywood1">#ffd39b</color>
   <color name="tomato">#FF6347</color>
+  <color name="maroon">#b20a5f</color>
+  <color name="mediumvioletred">#d80a72</color>
+  <color name="coral">#ff884e</color>
+  <color name="peru">#de7643</color>
+  <color name="turquoise">#50e3c2</color>
 </resources>

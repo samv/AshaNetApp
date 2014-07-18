@@ -1,0 +1,109 @@
+<RelativeLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   android:id="@+id/rlStream"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:background="@drawable/respond_bg"
+   >
+
+  <!-- floating subtitle -->
+  <TextView
+     android:id="@+id/tvTitle"
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"
+     android:layout_alignParentTop="true"
+     android:layout_alignParentLeft="true"
+     android:layout_marginTop="96dp"
+     android:layout_marginLeft="20dp"
+     android:text="@string/donate_subtitle"
+     style="@style/donate_title"
+     />
+
+  <LinearLayout
+     android:id="@+id/llAmount"
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"
+     android:layout_centerVertical="true"
+     android:layout_centerHorizontal="true"
+     android:layout_gravity="center"
+     android:orientation="vertical"
+     >
+
+    <TextView
+       android:id="@+id/tvAmount"
+       android:layout_height="wrap_content"
+       android:layout_width="wrap_content"
+       android:layout_gravity="center"
+       style="@style/donate_amount"
+       />
+
+    <TextView
+       android:id="@+id/tvPaywith"
+       android:layout_height="wrap_content"
+       android:layout_width="wrap_content"
+       android:layout_gravity="center"
+       android:text="@string/title_pay_via"
+       style="@style/donate_subtitle"
+       />
+
+  </LinearLayout>
+
+  <!-- payment method selection -->
+  <ImageButton
+     android:id="@+id/ibPayByCCRadio"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentLeft="true"
+     android:layout_marginLeft="20dp"
+     android:layout_below="@id/llAmount"
+     android:src="@drawable/radio_selected"
+     />
+
+  <ImageView
+     android:id="@+id/ivPayByCCTitle"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_toRightOf="@id/ibPayByCCRadio"
+     android:layout_alignBottom="@id/ibPayByCCRadio"
+     android:src="@drawable/icon_cc"
+     />
+
+  <ImageButton
+     android:id="@+id/ibPayByPPRadio"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentLeft="true"
+     android:layout_marginLeft="20dp"
+     android:layout_below="@id/ibPayByCCRadio"
+     android:src="@drawable/radio_deselected"
+     />
+
+  <ImageView
+     android:id="@+id/ivPayByPPTitle"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_toRightOf="@id/ibPayByPPRadio"
+     android:layout_alignBottom="@id/ibPayByPPRadio"
+     android:src="@drawable/paypal_coral"
+     />
+
+  <!-- complete payment button -->
+  <Button
+     android:id="@+id/btnContinue"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentBottom="true"
+     android:layout_alignParentLeft="true"
+     android:text="cta_generic"
+     />
+
+  <TextView
+     android:id="@+id/tvFinePrint"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentLeft="true"
+     android:layout_above="@id/btnContinue"
+     style="@style/button_cta"
+     />
+
+</RelativeLayout>

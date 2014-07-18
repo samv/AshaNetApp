@@ -1,0 +1,77 @@
+<RelativeLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   android:id="@+id/rlStream"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   >
+
+  <ListView
+     android:id="@+id/flStream"
+     android:layout_height="match_parent"
+     android:layout_width="match_parent"
+     />
+
+  <TextView
+     android:id="@+id/tvTitle"
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"
+     android:layout_alignParentTop="true"
+     android:layout_alignParentLeft="true"
+     android:layout_marginTop="32dp"
+     android:layout_marginLeft="20dp"
+     style="@style/stream_title"
+     />
+
+  <TextView
+     android:id="@+id/tvWhen"
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"
+     android:layout_alignParentTop="true"
+     android:layout_alignParentRight="true"
+     android:layout_marginTop="32dp"
+     android:layout_marginRight="20dp"
+     style="@style/stream_description"
+     />
+
+  <ImageView
+     android:id="@+id/ivBottomGradient"
+     android:layout_height="240dp"
+     android:layout_width="match_parent"
+     android:layout_alignParentBottom="true"
+     android:src="@drawable/stream_gradient"
+     />
+
+  <TextView
+     android:id="@+id/tvSubtitle"
+     android:layout_alignParentBottom="true"
+     android:layout_alignParentLeft="true"
+     android:layout_marginBottom="160dp"
+     android:layout_marginLeft="20dp"
+     style="@style/stream_title"
+     />
+
+  <TextView
+     android:id="@+id/tvDescription"
+     android:layout_alignParentLeft="true"
+     android:layout_marginLeft="20dp"
+     android:layout_below="@id/tvSubtitle"
+     android:layout_marginTop="8dp"
+     style="@style/stream_description"
+     />
+
+  <FrameLayout
+     android:id="@+id/flRespond"
+     android:layout_alignParentLeft="true"
+     android:layout_marginLeft="20dp"
+     android:layout_below="@id/tvSubtitle"
+     android:layout_marginTop="8dp"
+     style="@style/stream_description"
+     />
+
+  <ImageView
+     android:id="@+id/ivRespondButton"
+     android:layout_alignParentBottom="true"
+     android:layout_alignParentRight="true"
+     />
+
+</RelativeLayout>

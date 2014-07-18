@@ -118,17 +118,19 @@
     </style>
 
     <!-- buttons -->
-    <style name="button" parent="medium">
-      <item name="android:fontFamily">sans-serif</item>
+    <style name="button" parent="title">
       <item name="android:textSize">18sp</item>
-      <item name="fontPath">Gotham-Book.ttf</item>
       <item name="android:textColor">@color/white_smoke</item>
-      <item name="android:background">@color/burlywood1</item>
     </style>
 
     <style name="button_cta" parent="button">
-      <item name="android:background">@color/moccasin</item>
-      <item name="android:textColor">@color/royal_blue4</item>
+      <item name="android:textSize">18sp</item>
+      <item name="android:textColor">@color/chalk</item>
+      <item name="android:background">@color/coral</item>
+      <item name="android:paddingTop">8dp</item>
+      <item name="android:paddingBottom">8dp</item>
+      <item name="android:paddingLeft">20dp</item>
+      <item name="android:paddingRight">20dp</item>
     </style>
 
     <style name="button_donate" parent="button">
@@ -184,6 +186,64 @@
 
     <style name="loading_message" parent="small">
       <item name="android:background">@color/transparent</item>
+    </style>
+
+    <!-- stream -->
+    <style name="stream_title" parent="title">
+      <item name="android:background">@color/mediumvioletred</item>
+      <item name="android:paddingTop">8dp</item>
+      <item name="android:paddingBottom">8dp</item>
+      <item name="android:paddingLeft">20dp</item>
+      <item name="android:paddingRight">20dp</item>
+      <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="stream_subtitle" parent="title">
+      <item name="android:textColor">@color/chalk</item>
+      <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="stream_description" parent="medium">
+      <item name="android:textColor">@color/chalk</item>
+    </style>
+
+    <!-- 'donate' overlay fragment -->
+    <style name="donate_title" parent="title">
+      <item name="android:textColor">@color/chalk</item>
+      <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="donate_amount" parent="title">
+      <item name="android:textColor">@color/chalk</item>
+      <item name="android:textSize">22sp</item>
+      <item name="android:background">@color/peru</item>
+    </style>
+
+    <style name="donate_subtitle" parent="title">
+      <item name="android:textColor">@color/coral</item>
+      <item name="android:background">@color/peru</item>
+      <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="donate_fineprint" parent="micro">
+      <item name="android:textColor">@color/chalk</item>
+      <item name="android:background">@color/peru</item>
+    </style>
+
+    <!-- 'rsvp' overlay fragment -->
+    <style name="rsvp_title" parent="title">
+      <item name="android:textColor">@color/mediumvioletred</item>
+      <item name="android:background">@color/maroon</item>
+    </style>
+
+    <style name="rsvp_edit" parent="android:Widget.EditText">
+      <item name="android:textColor">@color/chalk</item>
+      <item name="fontPath">Cocogoose.ttf</item>
+      <item name="android:background">@color/maroon</item>
+      <item name="android:paddingTop">8dp</item>
+      <item name="android:paddingBottom">8dp</item>
+      <item name="android:paddingLeft">20dp</item>
+      <item name="android:paddingRight">20dp</item>
     </style>
 
 </resources>
