@@ -35,7 +35,13 @@
     <!-- general text settings: FIXME Android 4.1+ -->
     <style name="text" parent="@android:style/TextAppearance.Widget.TextView">
       <item name="android:textColor">@color/royal_blue4</item>
-      <item name="android:fontFamily">sans-serif-light</item>
+      <item name="fontPath">Gotham-Light.ttf</item>
+    </style>
+
+    <style name="title" parent="@android:style/TextAppearance.Widget.TextView">
+      <!--  somehow, textAllCaps seems to imply 'use Roboto Thin'
+      <item name="android:textAllCaps">true</item> -->
+      <item name="fontPath">Cocogoose.ttf</item>
     </style>
 
     <style name="micro" parent="text">
@@ -59,9 +65,19 @@
       <item name="android:textSize">22sp</item>
     </style>
 
+    <style name="title.splash">
+      <item name="android:textSize">80sp</item>
+      <item name="android:textColor">@color/white_smoke</item>
+   </style>
+
+    <style name="title.small">
+      <item name="android:textSize">12sp</item>
+      <item name="android:textColor">@color/white_smoke</item>
+    </style>
+
     <style name="large.heading">
       <item name="android:fontFamily">sans-serif</item>
-      <item name="android:textStyle">bold</item>
+      <item name="fontPath">Gotham-Book.ttf</item>
     </style>
 
    <!-- nav drawer -->
@@ -90,7 +106,6 @@
    <style name="nav_drawer_heading" parent="micro">
      <item name="android:background">@color/white_smoke</item>
      <item name="android:textAllCaps">true</item>
-     <item name="android:textAllCaps">true</item>
    </style>
 
     <style name="global_action_text" parent="small">
@@ -106,7 +121,7 @@
     <style name="button" parent="medium">
       <item name="android:fontFamily">sans-serif</item>
       <item name="android:textSize">18sp</item>
-      <item name="android:textStyle">bold</item>
+      <item name="fontPath">Gotham-Book.ttf</item>
       <item name="android:textColor">@color/white_smoke</item>
       <item name="android:background">@color/burlywood1</item>
     </style>
@@ -160,14 +175,15 @@
     </style>
 
     <style name="loading_screen" parent="body">
+      <item name="android:background">@drawable/splash</item>
     </style>
 
     <style name="loading_list" parent="android:Widget.ListView">
-      <item name="android:background">@color/white_smoke</item>
+      <item name="android:background">@color/transparent</item>
     </style>
 
     <style name="loading_message" parent="small">
-      <item name="android:background">@color/white_smoke</item>
+      <item name="android:background">@color/transparent</item>
     </style>
 
 </resources>

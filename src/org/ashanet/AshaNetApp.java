@@ -15,6 +15,7 @@ import org.ashanet.typedef.Project;
 import org.ashanet.typedef.ProjectType;
 import org.ashanet.typedef.State;
 import org.ashanet.typedef.Status;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class AshaNetApp extends Application {
 
@@ -23,6 +24,8 @@ public class AshaNetApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        CalligraphyConfig.initDefault
+            ("fonts/Gotham-Light.ttf", R.attr.fontPath);
         LineNumberReader lnr = new LineNumberReader
             (new InputStreamReader
              (getResources().openRawResource(R.raw.keys)));

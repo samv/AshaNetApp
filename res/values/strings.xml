@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Asha</string>
+    <string name="app_name_caps">ASHA</string>
     <string name="tab_projects">Projects</string>
     <string name="title_projects">Asha Projects</string>
     <string name="label_project_type">Type:</string>
@@ -43,5 +44,7 @@
 
     <string name="title_about">About Asha</string>
     <string name="title_loading">Loading Data</string>
+
+    <string name="splash_subtitle">BRINGING HOPE THROUGH EDUCATION</string>
 
 </resources>

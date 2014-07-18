@@ -1,5 +1,6 @@
 package org.ashanet;
 
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -31,6 +32,7 @@ import org.ashanet.interfaces.FragmentNavigation;
 import org.ashanet.interfaces.ProgressIndicator;
 import org.ashanet.util.FragmentTabListener;
 import org.ashanet.util.TypeMaps;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity
     extends ActionBarActivity
@@ -53,6 +55,11 @@ public class MainActivity
     private ActionBar actionBar;
     public TypeMaps typeMaps;
     private ArrayList<String> fragTitles;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(new CalligraphyContextWrapper(newBase));
+    }
 
     /** Called when the activity is first created. */
     @Override
