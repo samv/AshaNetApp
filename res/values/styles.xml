@@ -19,6 +19,7 @@
       <item name="android:titleTextStyle">@style/AshaActionBar.TitleTextStyle</item>
       <item name="android:background">@color/burlywood1</item>
       <item name="android:backgroundStacked">@color/moccasin</item>
+      <item name="android:height">0dp</item>
     </style>
 
     <style name="AshaActionBar.TitleTextStyle"
