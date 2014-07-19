@@ -1,6 +1,7 @@
 package org.ashanet;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -22,6 +23,7 @@ import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 import com.parse.ParseUser;
 import java.util.ArrayList;
+import org.ashanet.activity.StreamActivity;;
 import org.ashanet.adapter.NavDrawerAdapter;
 import org.ashanet.fragment.AboutFragment;
 import org.ashanet.fragment.EventListFragment;
@@ -83,7 +85,7 @@ public class MainActivity
         Log.d("DEBUG", "Nav Drawer!");
         setupNavDrawer();
         Log.d("DEBUG", "Nav Drawer Done!");
-        typeMaps = new TypeMaps();
+        typeMaps = ((AshaNetApp)getApplication()).typeMaps;
         chooseFragment(getLoadingFragment(), 0);
     }
 
@@ -245,7 +247,9 @@ public class MainActivity
         // fragment by tag, perhaps this could keep popping until it
         // finds it.
         if (currentFragment == loadingFragment) {
-            chooseFragment(getProjectsFragment(), 0);
+            Intent i = new Intent(this, StreamActivity.class);
+            startActivity(i);
+            //chooseFragment(getProjectsFragment(), 0);
         }
         else {
             getSupportFragmentManager().popBackStack();

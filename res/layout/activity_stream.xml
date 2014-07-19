@@ -6,7 +6,7 @@
    >
 
   <ListView
-     android:id="@+id/flStream"
+     android:id="@+id/lvStream"
      android:layout_height="match_parent"
      android:layout_width="match_parent"
      />
@@ -43,6 +43,8 @@
 
   <TextView
      android:id="@+id/tvSubtitle"
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"
      android:layout_alignParentBottom="true"
      android:layout_alignParentLeft="true"
      android:layout_marginBottom="160dp"
@@ -52,6 +54,8 @@
 
   <TextView
      android:id="@+id/tvDescription"
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"
      android:layout_alignParentLeft="true"
      android:layout_marginLeft="20dp"
      android:layout_below="@id/tvSubtitle"
@@ -61,6 +65,8 @@
 
   <FrameLayout
      android:id="@+id/flRespond"
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"
      android:layout_alignParentLeft="true"
      android:layout_marginLeft="20dp"
      android:layout_below="@id/tvSubtitle"
@@ -70,6 +76,8 @@
 
   <ImageView
      android:id="@+id/ivRespondButton"
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"
      android:layout_alignParentBottom="true"
      android:layout_alignParentRight="true"
      />

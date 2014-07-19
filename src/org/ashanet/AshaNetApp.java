@@ -15,14 +15,20 @@ import org.ashanet.typedef.Project;
 import org.ashanet.typedef.ProjectType;
 import org.ashanet.typedef.State;
 import org.ashanet.typedef.Status;
+import org.ashanet.typedef.StockImage;
+import org.ashanet.typedef.Stream;
+import org.ashanet.util.TypeMaps;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class AshaNetApp extends Application {
 
     public String parseAppId;
+    public TypeMaps typeMaps;
 
     @Override
     public void onCreate() {
+        Log.d("DEBUG", "Creating TypeMaps");
+        typeMaps = new TypeMaps();
         super.onCreate();
         CalligraphyConfig.initDefault
             ("fonts/Gotham-Light.ttf", R.attr.fontPath);
@@ -54,5 +60,7 @@ public class AshaNetApp extends Application {
         ParseObject.registerSubclass(ProjectType.class);
         ParseObject.registerSubclass(State.class);
         ParseObject.registerSubclass(Status.class);
+        ParseObject.registerSubclass(Stream.class);
+        ParseObject.registerSubclass(StockImage.class);
     }
 }

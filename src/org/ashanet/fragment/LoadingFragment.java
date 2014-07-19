@@ -26,6 +26,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import java.util.List;
 import org.ashanet.R;
+import org.ashanet.AshaNetApp;
 import org.ashanet.interfaces.FragmentNavigation;
 import org.ashanet.interfaces.ProgressIndicator;
 import org.ashanet.util.TypeMaps;
@@ -38,11 +39,11 @@ public class LoadingFragment extends Fragment {
 
     // FIXME - this should go in a base class.
     public LoadingFragment(ProgressIndicator pi, FragmentNavigation fn,
-                           TypeMaps tm)
+                           TypeMaps typeMaps)
     {
         this.pi = pi;
         this.fn = fn;
-        this.tm = tm;
+        this.tm = typeMaps;
     }
 
     /** Called when the activity is first created. */
@@ -64,6 +65,7 @@ public class LoadingFragment extends Fragment {
         ((ListView) v.findViewById(R.id.lvLoadingMessages))
             .setAdapter(adpt);
         loadStuff();
+        Log.d("DEBUG", "LoadingFragment.onCreate finished");
         return v;
     }
 
@@ -79,8 +81,9 @@ public class LoadingFragment extends Fragment {
                         (got == STUFF.STATE) ? "Status" :
                         null);
 
-        if (table == null)
+        if (table == null) {
             fn.popFragment(R.string.title_loading);
+        }
         else {
             adpt.add("Loading " + table + "...");
             ParseQuery<ParseObject> query = ParseQuery.getQuery(table);
