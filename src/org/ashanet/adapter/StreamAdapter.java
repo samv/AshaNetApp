@@ -58,11 +58,11 @@ public class StreamAdapter
         if (v == null)
             v = super.getItemView(streamItem, v, parent);
 
-        ImageView i = (ImageView) v.findViewById(R.id.ivImage);
-        Log.d("DEBUG", "Found " + i + " in " + v);
+        ImageView i = (ImageView) v;
 
-        i.setTag(streamItem.getObjectId());
         String imageId = streamItem.getImageId();
+        i.setTag(imageId);
+        Log.d("DEBUG", "Set tag for " + i + " to " + imageId);
         insertStockImage(imageId, i);
         return v;
     }
@@ -81,14 +81,21 @@ public class StreamAdapter
         ivImage.setImageResource(R.drawable.splash);
         ParseQuery<StockImage> query = ParseQuery.getQuery(StockImage.class);
         final ImageView ivImageRef = ivImage;
+        final String iid = imageId;
+        Log.d("DEBUG", "Fetching StockImage " + imageId + " for ImageView " + ivImageRef);
         query.getInBackground
             (imageId,
              new GetCallback<StockImage>() {
                 public void done(StockImage sImage, ParseException e) {
-                    if ((e == null) &&
-                        (ivImageRef.getTag() == sImage.getObjectId()))
-                    {
-                        setImageFile(sImage, ivImageRef);
+                    if (e == null) {
+                        Log.d("DEBUG", "Callback for StockImage " + sImage.getObjectId() +
+                              " (expected " + iid + ") and ImageView " + ivImageRef);
+                        if (ivImageRef.getTag().equals(sImage.getObjectId())) {
+                            setImageFile(sImage, ivImageRef);
+                        } else {
+                            Log.d("DEBUG", "stale callback for " + sImage.getObjectId() + "; "
+                                  + "Image " +ivImageRef  + " is now "  + ivImageRef.getTag());
+                        }
                     } else {
                         Log.d("ERROR", "erp! " + e);
                     }
@@ -99,18 +106,27 @@ public class StreamAdapter
     void setImageFile(StockImage sImage, ImageView ivImage) {
         final ImageView ivImageRef = ivImage;
         final StockImage sImageRef = sImage;
-        sImage.getImageFile().getDataInBackground
+        Log.d("DEBUG", "Fetching Data for image: " + sImageRef.getObjectId());
+         sImage.getImageFile().getDataInBackground
             (new GetDataCallback() {
              @Override
              public void done(byte[] data, ParseException e) {
-                 if ((e == null) &&
-                     (ivImageRef.getTag() == sImageRef.getObjectId()))
-                 {
-                     Bitmap bmp = BitmapFactory.decodeByteArray
-                         (data, 0, data.length);
-                     ivImageRef.setImageBitmap(bmp);
+                 if (e == null) {
+                     if (ivImageRef.getTag().equals(sImageRef.getObjectId())) {
+                         Bitmap bmp = BitmapFactory.decodeByteArray
+                             (data, 0, data.length);
+                         ivImageRef.setImageBitmap(bmp);
+                     }
+                     else {
+                         Log.d("DEBUG", "stale callback for " + sImageRef.getObjectId() + "; "
+                               + "Image " +ivImageRef  + " is now "  + ivImageRef.getTag());
+                     }
+                 }
+                 else {
+                     Log.d("ERROR", "erp! e = " + e);
                  }
              }});
+
     }
 
     @Override
