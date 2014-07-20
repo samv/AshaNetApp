@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+  <item
+     android:right="-20dp"
+     android:bottom="-20dp"
+     >
+    <rotate
+       android:fromDegrees="45"
+       android:toDegrees="45"
+       android:pivotX="0%"
+       android:pivotY="100%"
+       >
+      <shape android:shape="rectangle">
+        <size android:width="68dp" android:height="68dp"/>
+        <solid android:color="@color/peru" />
+      </shape>
+    </rotate>
+  </item>
+  <!--
+  <item>
+    <bitmap android:src="@drawable/coin_orange"/>
+  </item>
+-->
+</layer-list>

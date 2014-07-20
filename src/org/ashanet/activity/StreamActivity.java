@@ -34,7 +34,9 @@ public class StreamActivity
     TextView tvSubtitle;
     TextView tvDescription;
     FrameLayout flRespond;
-    ImageView ivRespondButton;
+    ImageView ivRespondSlotBg;
+    TextView tvRespondIcon;
+    ImageView ivRespondSlotFg;
 
     private long currentEntry = -1;
     private long flingToEntry = -1;
@@ -250,7 +252,10 @@ public class StreamActivity
         tvSubtitle = (TextView) findViewById(R.id.tvSubtitle);
         tvDescription = (TextView) findViewById(R.id.tvDescription);
         flRespond = (FrameLayout) findViewById(R.id.flRespond);
-        ivRespondButton = (ImageView) findViewById(R.id.ivRespondButton);
+
+        ivRespondSlotBg = (ImageView) findViewById(R.id.ivRespondSlotBg);
+        tvRespondIcon = (TextView) findViewById(R.id.tvRespondIcon);
+        ivRespondSlotFg = (ImageView) findViewById(R.id.ivRespondSlotFg);
     }
 
     void changeLabels() {
@@ -304,6 +309,16 @@ public class StreamActivity
         //int width = tvSubtitle.getWidth();
         tvTitle.setTranslationX
             ( -distance * (tvTitle.getWidth() + 40) );
+
+        int slotMoves = 50;
+        ivRespondSlotFg.setTranslationX(distance * slotMoves);
+        ivRespondSlotFg.setTranslationY(distance * slotMoves);
+        ivRespondSlotBg.setTranslationX(distance * slotMoves);
+        ivRespondSlotBg.setTranslationY(distance * slotMoves);
+
+        int iconMoves = 100;
+        tvRespondIcon.setTranslationX(distance * iconMoves);
+        tvRespondIcon.setTranslationY(-distance * iconMoves);
 
         float veryClose = distance > 0.5 ? 0 : (1 - distance*2);
         tvDescription.setAlpha(veryClose);

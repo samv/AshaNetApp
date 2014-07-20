@@ -72,11 +72,37 @@
      />
 
   <ImageView
-     android:id="@+id/ivRespondButton"
+     android:id="@+id/ivRespondSlotBg"
      android:layout_height="wrap_content"
      android:layout_width="wrap_content"
      android:layout_alignParentBottom="true"
      android:layout_alignParentRight="true"
+     android:src="@drawable/respond_slot_bg"
+     />
+
+  <TextView
+     android:id="@+id/tvRespondIcon"
+     android:layout_height="28dp"
+     android:layout_width="28dp"
+     android:layout_alignRight="@id/ivRespondSlotBg"
+     android:layout_alignBottom="@id/ivRespondSlotBg"
+     android:layout_marginRight="20dp"
+     android:layout_marginBottom="20dp"
+     android:gravity="center"
+     android:textColor="@color/coral"
+     android:textSize="18dp"
+     android:text="$"
+     fontPath="Gotham-Bold.ttf"
+     android:background="@drawable/coin_bg"
+     />
+
+  <ImageView
+     android:id="@+id/ivRespondSlotFg"
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"
+     android:layout_alignParentBottom="true"
+     android:layout_alignParentRight="true"
+     android:src="@drawable/respond_slot_fg"
      />
 
 </RelativeLayout>
