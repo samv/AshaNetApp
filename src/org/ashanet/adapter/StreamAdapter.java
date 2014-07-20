@@ -125,7 +125,10 @@ public class StreamAdapter
                      if (ivImageRef.getTag().equals(sImageRef.getObjectId())) {
                          Bitmap bmp = BitmapFactory.decodeByteArray
                              (data, 0, data.length);
-                         if ((height == 0) || (height == bmp.getHeight())) {
+                         if (bmp == null) {
+                             Log.d("DEBUG", String.format("E: No image decoded"));
+                         }
+                         else if ((height == 0) || (height == bmp.getHeight())) {
                              Log.d("DEBUG", String.format
                                    ("Image at %dx%d fine for height=%d",
                                     bmp.getWidth(), bmp.getHeight(), height));
