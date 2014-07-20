@@ -19,6 +19,7 @@ import org.ashanet.AshaNetApp;
 import org.ashanet.R;
 import org.ashanet.adapter.StreamAdapter;
 import org.ashanet.typedef.Stream;
+import org.ashanet.util.Palette;
 import org.ashanet.util.TypeMaps;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -286,8 +287,25 @@ public class StreamActivity
                   String.format("%dx%d+%.1fx%.1f", tvDescription.getWidth(),
                                 tvDescription.getHeight(), tvDescription.getX(),
                                 tvDescription.getY()));
-
+            changeColor(Palette.getColor(streamItem.getColorName()));
         }
+    }
+
+    void changeColor(Palette.COLOR color) {
+        int lightColor = getResources().getColor(color.light);
+        Log.d("DEBUG", "Change color to " + color +
+              String.format(" (light: %-8x)", lightColor));
+
+        tvTitle.setBackgroundColor(lightColor);
+        tvSubtitle.setBackgroundColor(lightColor);
+        // ivBottomGradient;  // need to set bottom gradient
+
+        // flRespond;  // will need the message to be passed along
+
+        // ivRespondSlotBg;  // find layers & change
+        tvRespondIcon.setTextColor(lightColor);
+
+        // ivRespondSlotFg;  // find layer & change
     }
 
     void setFadeIn() {
