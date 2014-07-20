@@ -2,6 +2,11 @@
 package org.ashanet.activity;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.RotateDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -41,6 +46,10 @@ public class StreamActivity
     ImageView ivRespondSlotBg;
     TextView tvRespondIcon;
     ImageView ivRespondSlotFg;
+    GradientDrawable dgStream;
+    GradientDrawable dgRespondSlotFg;
+    GradientDrawable dgRespondSlotBg;
+    GradientDrawable dgRespondSlot;
 
     private long currentEntry = -1;
     private long flingToEntry = -1;
@@ -262,8 +271,32 @@ public class StreamActivity
         flRespond = (FrameLayout) findViewById(R.id.flRespond);
 
         ivRespondSlotBg = (ImageView) findViewById(R.id.ivRespondSlotBg);
+        LayerDrawable ldRespondSlotBg = (LayerDrawable)
+            ivRespondSlotBg.getDrawable();
+        dgRespondSlotBg = (GradientDrawable)
+            ((RotateDrawable)
+             ldRespondSlotBg.findDrawableByLayerId(R.id.drRespondSlotBg))
+            .getDrawable();
+        dgRespondSlot = (GradientDrawable)
+            ((RotateDrawable)
+             ldRespondSlotBg.findDrawableByLayerId(R.id.drRespondSlot))
+            .getDrawable();
+
+        dgStream = (GradientDrawable) ivBottomGradient.getDrawable();
+
         tvRespondIcon = (TextView) findViewById(R.id.tvRespondIcon);
         ivRespondSlotFg = (ImageView) findViewById(R.id.ivRespondSlotFg);
+        dgRespondSlotFg = (GradientDrawable)
+            ((RotateDrawable)
+             ((LayerDrawable) ivRespondSlotFg.getDrawable())
+             .findDrawableByLayerId(R.id.drRespondSlotFg))
+            .getDrawable();
+
+        Log.d("DEBUG", "Drawables: " + 
+              "dgRespondSlot=" + dgRespondSlot
+              + ", dgRespondSlotFg=" + dgRespondSlotFg
+              + ", dgRespondSlotBg=" + dgRespondSlotBg
+              + ", dgStream=" + dgStream);
     }
 
     void changeLabels() {
@@ -292,20 +325,25 @@ public class StreamActivity
     }
 
     void changeColor(Palette.COLOR color) {
-        int lightColor = getResources().getColor(color.light);
+        Resources rsrc = getResources();
+        int lightColor = rsrc.getColor(color.light);
+        int mediumColor = rsrc.getColor(color.medium);
+        int darkColor = rsrc.getColor(color.dark);
         Log.d("DEBUG", "Change color to " + color +
               String.format(" (light: %-8x)", lightColor));
 
         tvTitle.setBackgroundColor(lightColor);
         tvSubtitle.setBackgroundColor(lightColor);
-        // ivBottomGradient;  // need to set bottom gradient
+        int[] bgGradient = { mediumColor, 0 };
+        dgStream.setColors(bgGradient);
 
         // flRespond;  // will need the message to be passed along
 
-        // ivRespondSlotBg;  // find layers & change
         tvRespondIcon.setTextColor(lightColor);
-
-        // ivRespondSlotFg;  // find layer & change
+        dgRespondSlotFg.setColor(mediumColor);
+        dgRespondSlotBg.setColor(mediumColor);
+        // doesn't work :-(
+        // dgRespondSlot.setStroke(4, darkColor);
     }
 
     void setFadeIn() {
@@ -352,6 +390,7 @@ public class StreamActivity
         tvDescription.setAlpha(veryClose);
         tvSubtitle.setAlpha(veryClose);
         ivBottomGradient.setAlpha(veryClose);
+
     }
     public void onLoaded(List<Stream> objects, Exception e) {
         loaded = true;

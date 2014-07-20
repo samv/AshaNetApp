@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
-<!--  <item>
-    <clip>
-      <shape android:shape="rectangle">
-        <size android:width="48dp" android:height="48dp"/>
-        <solid android:color="@color/gray7" />
-     </shape>
-    </clip>
-  </item> -->
-
   <item
      android:right="-88dp"
      android:bottom="-68dp"
+     android:id="@+id/drRespondSlotBg"
      >
     <rotate
        android:fromDegrees="45"
@@ -19,7 +11,8 @@
        android:pivotX="0%"
        android:pivotY="50%"
        >
-      <shape android:shape="rectangle">
+      <shape android:shape="rectangle"
+             >
         <size android:width="136dp" android:height="136dp"/>
         <solid android:color="@color/peru" />
       </shape>
@@ -31,6 +24,7 @@
      android:top="25dp"
      android:right="24dp"
      android:bottom="5dp"
+     android:id="@+id/drRespondSlot"
      >
     <rotate
        android:fromDegrees="45"
@@ -38,8 +32,9 @@
        android:pivotX="0%"
        android:pivotY="100%"
        >
-      <shape android:shape="rectangle">
-        <stroke android:color="@color/saddlebrown" android:width="4dp"/>
+      <shape android:shape="rectangle"
+             >
+        <stroke android:color="#7f000000" android:width="4dp"/>
       </shape>
     </rotate>
   </item>
