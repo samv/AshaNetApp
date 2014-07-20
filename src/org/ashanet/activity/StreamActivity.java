@@ -37,6 +37,7 @@ public class StreamActivity
     ImageView ivRespondButton;
 
     private long currentEntry = -1;
+    private long flingToEntry = -1;
     private float position = 0;
     private float velocity = 0;
     private float acceleration = 0;
@@ -185,6 +186,7 @@ public class StreamActivity
                           lvStream.smoothScrollToPositionFromTop
                               (goToEntry, 0, scrollTimeMs);
                       }});
+                 flingToEntry = guessedEntry;
                  moving = true;
              }
          }
@@ -201,7 +203,7 @@ public class StreamActivity
         //Log.d("DEBUG", "Now visible: " + firstVisibleItem + " (#visible: " + visibleItemCount
               //+ "), total items = " + totalItemCount);
         readPosition();
-        if (Math.round(position) != currentEntry)
+        if ((moving ? flingToEntry : Math.round(position)) != currentEntry)
             changeLabels();
         setFadeIn();
     }
@@ -228,6 +230,7 @@ public class StreamActivity
                     @Override public void run() {
                         lvStream.smoothScrollToPositionFromTop
                             ((int)currentEntry, 0, (int)Math.round(distance * 1500));
+                        flingToEntry = currentEntry;
                         moving = true;
                         flung = false;
                     }});
@@ -276,7 +279,8 @@ public class StreamActivity
     }
 
     void setFadeIn() {
-        float distance = Math.abs(currentEntry - position);
+        float distance = Math.abs
+            ((moving ? flingToEntry : currentEntry) - position);
 
         if ((Math.abs(velocity) > 2) &&
             !( ((velocity < 0) && (position < 0.333)) ||
