@@ -11,8 +11,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.parse.ParseQueryAdapter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.ashanet.AshaNetApp;
 import org.ashanet.R;
 import org.ashanet.adapter.StreamAdapter;
@@ -22,7 +24,8 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class StreamActivity
     extends FragmentActivity
-    implements AbsListView.OnScrollListener
+    implements AbsListView.OnScrollListener,
+               ParseQueryAdapter.OnQueryLoadListener<Stream>
 {
     private StreamAdapter streamAdapter;
     private TypeMaps tm;
@@ -49,6 +52,7 @@ public class StreamActivity
     private int titleWidth = 0;
     private boolean moving = false;
     private boolean flung = false;
+    private boolean loaded = false;
 
     private class Sample {
         public float position;
@@ -73,9 +77,12 @@ public class StreamActivity
         Log.d("DEBUG", "StreamActivity.onCreate()");
         tm = ((AshaNetApp)getApplication()).typeMaps;
         connectWidgets();
+        setFadeIn();
+        
         positions = new ArrayList<Sample>();
         Log.d("DEBUG", "Creating StreamAdapter(" + this + ", " + tm + ")");
         streamAdapter = new StreamAdapter(this, tm);
+        streamAdapter.addOnQueryLoadListener(this);
         lvStream.setAdapter(streamAdapter);
         lvStream.setOnScrollListener(this);
     }
@@ -287,7 +294,9 @@ public class StreamActivity
         float distance = Math.abs
             ((moving ? flingToEntry : currentEntry) - position);
 
-        if ((Math.abs(velocity) > 2) &&
+        if (!loaded)
+            distance = 1;
+        else if ((Math.abs(velocity) > 2) &&
             !( ((velocity < 0) && (position < 0.333)) ||
                (currentEntry == (streamAdapter.getCount() - 1))))
         {
@@ -296,12 +305,13 @@ public class StreamActivity
             else
                 distance = distance * Math.abs(velocity) / 2;
         }
-        if ((distance > 0.33333)) {
+        if ((distance < 1) && (distance > 0.33333)) {
             distance = 1;
         }
         else {
             distance = distance * 3;
         }
+
 
         //        Log.d("DEBUG", String.format
         //("Position = %.2f, V = %.2g, a = %.2g, distance = %.2f",
@@ -324,5 +334,11 @@ public class StreamActivity
         tvDescription.setAlpha(veryClose);
         tvSubtitle.setAlpha(veryClose);
         ivBottomGradient.setAlpha(veryClose);
+    }
+    public void onLoaded(List<Stream> objects, Exception e) {
+        loaded = true;
+    }
+    public void onLoading() {
+        loaded = false;
     }
 }
