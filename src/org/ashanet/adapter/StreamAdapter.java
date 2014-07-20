@@ -31,6 +31,7 @@ public class StreamAdapter
     extends ParseQueryAdapter<Stream>
 {
     TypeMaps tm;
+    protected int height = 0;
     public StreamAdapter(Context context, TypeMaps tm)
     {
         super(context, Stream.class, R.layout.view_stream_image);
@@ -38,32 +39,35 @@ public class StreamAdapter
         Log.d("DEBUG", "new StreamListAdapter");
     }
 
-    /**
-    private ArrayList<ImageView> currentViews;
-
-    @Override
-    public View getView(int position, View v, ViewGroup parent) {
-        if (v != null)
-            currentViews.set(currentViews.indexOf(v), null);
-        while (currentViews.size() <= position) {
-            currentViews.add(null);
-        }
-        v = super.getView(position, v, parent);
-        currentViews.set(position, v);
-    }
-    */
+    // private ArrayList<ImageView> currentViews;
+    //public final View getView(int position, View v, ViewGroup parent) {
+        //Log.d("DEBUG", "Getting view for position " + position + ", recycle = " + v);
+        //v = super.getView(position, v, parent);
+        //Log.d("DEBUG", "Got view for position " + position + " = " + v + " (tag " + v.getTag() + ")");
+        //return v;
+    //}
 
     @Override
     public View getItemView(Stream streamItem, View v, ViewGroup parent) {
+        boolean needsImageSet = true;
         if (v == null)
             v = super.getItemView(streamItem, v, parent);
+        else {
+            needsImageSet = false;
+        }
 
         ImageView i = (ImageView) v;
-
         String imageId = streamItem.getImageId();
-        i.setTag(imageId);
-        Log.d("DEBUG", "Set tag for " + i + " to " + imageId);
-        insertStockImage(imageId, i);
+        if (!needsImageSet && !i.getTag().equals(streamItem.getImageId()))
+            needsImageSet = true;
+        if (needsImageSet) {
+            i.setTag(imageId);
+            Log.d("DEBUG", "Set tag for " + i + " to " + imageId);
+            insertStockImage(imageId, i);
+        }
+        else {
+            Log.d("DEBUG", "Recycled view for same item...?");
+        } 
         return v;
     }
 
@@ -77,8 +81,14 @@ public class StreamAdapter
         return v;
     }
 
+    public void setHeight(int height) {
+        if (this.height != height) {
+            this.height = height;
+        }
+    }
+
     void insertStockImage(String imageId, ImageView ivImage) {
-        ivImage.setImageResource(R.drawable.splash);
+        ivImage.setBackgroundColor(R.color.gray7);
         ParseQuery<StockImage> query = ParseQuery.getQuery(StockImage.class);
         final ImageView ivImageRef = ivImage;
         final String iid = imageId;
@@ -115,7 +125,23 @@ public class StreamAdapter
                      if (ivImageRef.getTag().equals(sImageRef.getObjectId())) {
                          Bitmap bmp = BitmapFactory.decodeByteArray
                              (data, 0, data.length);
-                         ivImageRef.setImageBitmap(bmp);
+                         if ((height == 0) || (height == bmp.getHeight())) {
+                             Log.d("DEBUG", String.format
+                                   ("Image at %dx%d fine for height=%d",
+                                    bmp.getWidth(), bmp.getHeight(), height));
+                             ivImageRef.setImageBitmap(bmp);
+                         }
+                         else {
+                             float scaleFactor = ((float)height) / bmp.getHeight();
+                             int width = (int) Math.round
+                                 (((float)bmp.getWidth()) * scaleFactor);
+                             Log.d("DEBUG", String.format
+                                   ("Scaling %dx%d image to %dx%d",
+                                    bmp.getWidth(), bmp.getHeight(), width, height));
+                             ivImageRef.setImageBitmap
+                                 (Bitmap.createScaledBitmap
+                                  (bmp, width, height, false));
+                         }
                      }
                      else {
                          Log.d("DEBUG", "stale callback for " + sImageRef.getObjectId() + "; "

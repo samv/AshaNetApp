@@ -86,7 +86,9 @@ public class MainActivity
         setupNavDrawer();
         Log.d("DEBUG", "Nav Drawer Done!");
         typeMaps = ((AshaNetApp)getApplication()).typeMaps;
-        chooseFragment(getLoadingFragment(), 0);
+        Intent i = new Intent(this, StreamActivity.class);
+        startActivity(i);
+        //chooseFragment(getLoadingFragment(), 0);
     }
 
     private void setupNavDrawer() {
@@ -247,8 +249,6 @@ public class MainActivity
         // fragment by tag, perhaps this could keep popping until it
         // finds it.
         if (currentFragment == loadingFragment) {
-            Intent i = new Intent(this, StreamActivity.class);
-            startActivity(i);
             //chooseFragment(getProjectsFragment(), 0);
         }
         else {

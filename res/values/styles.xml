@@ -204,7 +204,7 @@
       <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="stream_description" parent="medium">
+    <style name="stream_description" parent="text">
       <item name="android:textColor">@color/chalk</item>
     </style>
 

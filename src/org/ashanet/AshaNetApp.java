@@ -31,7 +31,7 @@ public class AshaNetApp extends Application {
         typeMaps = new TypeMaps();
         super.onCreate();
         CalligraphyConfig.initDefault
-            ("fonts/Gotham-Light.ttf", R.attr.fontPath);
+            ("Gotham-Light.ttf", R.attr.fontPath);
         LineNumberReader lnr = new LineNumberReader
             (new InputStreamReader
              (getResources().openRawResource(R.raw.keys)));
