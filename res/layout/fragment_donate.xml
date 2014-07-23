@@ -29,16 +29,18 @@
      android:orientation="vertical"
      >
 
-    <TextView
-       android:id="@+id/tvAmount"
+    <EditText
+       android:id="@+id/etAmount"
        android:layout_height="wrap_content"
        android:layout_width="wrap_content"
        android:layout_gravity="center"
+       android:hint="$20"
+       android:inputType="numberDecimal"
        style="@style/donate_amount"
        />
 
     <TextView
-       android:id="@+id/tvPaywith"
+       android:id="@+id/tvPayWith"
        android:layout_height="wrap_content"
        android:layout_width="wrap_content"
        android:layout_gravity="center"
@@ -54,9 +56,11 @@
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
      android:layout_alignParentLeft="true"
-     android:layout_marginLeft="20dp"
+     android:layout_marginLeft="32dp"
+     android:layout_marginTop="16dp"
      android:layout_below="@id/llAmount"
      android:src="@drawable/radio_selected"
+     android:background="#33333333"
      />
 
   <ImageView
@@ -65,7 +69,9 @@
      android:layout_height="wrap_content"
      android:layout_toRightOf="@id/ibPayByCCRadio"
      android:layout_alignBottom="@id/ibPayByCCRadio"
+     android:layout_marginLeft="32dp"
      android:src="@drawable/icon_cc"
+     android:background="#66666666"
      />
 
   <ImageButton
@@ -73,9 +79,11 @@
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
      android:layout_alignParentLeft="true"
-     android:layout_marginLeft="20dp"
+     android:layout_marginLeft="32dp"
+     android:layout_marginTop="16dp"
      android:layout_below="@id/ibPayByCCRadio"
      android:src="@drawable/radio_deselected"
+     android:background="#88888888"
      />
 
   <ImageView
@@ -84,7 +92,9 @@
      android:layout_height="wrap_content"
      android:layout_toRightOf="@id/ibPayByPPRadio"
      android:layout_alignBottom="@id/ibPayByPPRadio"
+     android:layout_marginLeft="32dp"
      android:src="@drawable/paypal_coral"
+     android:background="#aaaaaaaa"
      />
 
   <!-- complete payment button -->
@@ -94,7 +104,10 @@
      android:layout_height="wrap_content"
      android:layout_alignParentBottom="true"
      android:layout_alignParentLeft="true"
-     android:text="cta_generic"
+     android:layout_marginLeft="24dp"
+     android:layout_marginBottom="20dp"
+     android:text="@string/cta_generic"
+     style="@style/button_cta"
      />
 
   <TextView
@@ -103,7 +116,11 @@
      android:layout_height="wrap_content"
      android:layout_alignParentLeft="true"
      android:layout_above="@id/btnContinue"
-     style="@style/button_cta"
+     android:text="@string/copy_disclaimer"
+     android:layout_marginLeft="24dp"
+     android:layout_marginRight="24dp"
+     android:layout_marginBottom="8dp"
+     style="@style/donate_fineprint"
      />
 
 </RelativeLayout>

@@ -1,6 +1,8 @@
 
 package org.ashanet.activity;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.GradientDrawable;
@@ -9,12 +11,16 @@ import android.graphics.drawable.RotateDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.parse.ParseQueryAdapter;
 import java.util.ArrayList;
@@ -23,6 +29,7 @@ import java.util.List;
 import org.ashanet.AshaNetApp;
 import org.ashanet.R;
 import org.ashanet.adapter.StreamAdapter;
+import org.ashanet.fragment.RespondFragment;
 import org.ashanet.typedef.Stream;
 import org.ashanet.util.Palette;
 import org.ashanet.util.TypeMaps;
@@ -31,7 +38,8 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class StreamActivity
     extends FragmentActivity
     implements AbsListView.OnScrollListener,
-               ParseQueryAdapter.OnQueryLoadListener<Stream>
+               ParseQueryAdapter.OnQueryLoadListener<Stream>,
+               View.OnClickListener
 {
     private StreamAdapter streamAdapter;
     private TypeMaps tm;
@@ -50,14 +58,18 @@ public class StreamActivity
     GradientDrawable dgRespondSlotFg;
     GradientDrawable dgRespondSlotBg;
     GradientDrawable dgRespondSlot;
+    RespondFragment respondFragment;
 
     private long currentEntry = -1;
+    private Palette.COLOR currentColor = Palette.COLOR.GREY;
+    private Stream.Type currentType = Stream.Type.PROJECT;
     private long flingToEntry = -1;
     private float position = 0;
     private float velocity = 0;
     private float acceleration = 0;
     private float fallingFrom = 0;
     private float fallingSpeed = 0;
+    private float dp = 1;
     private long fallingStarted = 0;
     private int titleWidth = 0;
     private boolean moving = false;
@@ -85,7 +97,13 @@ public class StreamActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stream);
         Log.d("DEBUG", "StreamActivity.onCreate()");
-        tm = ((AshaNetApp)getApplication()).typeMaps;
+        tm = ((AshaNetApp)getApplication()).typeMaps; 
+
+        Resources rsrc = getResources();
+        dp = TypedValue.applyDimension
+            (TypedValue.COMPLEX_UNIT_DIP, 100, rsrc.getDisplayMetrics())
+            / 100;
+
         connectWidgets();
         setFadeIn();
         
@@ -271,8 +289,10 @@ public class StreamActivity
         flRespond = (FrameLayout) findViewById(R.id.flRespond);
 
         ivRespondSlotBg = (ImageView) findViewById(R.id.ivRespondSlotBg);
+        ivRespondSlotBg.setOnClickListener(this);
         LayerDrawable ldRespondSlotBg = (LayerDrawable)
             ivRespondSlotBg.getDrawable();
+        Log.d("DEBUG", "ldrsb = " + ldRespondSlotBg);
         dgRespondSlotBg = (GradientDrawable)
             ((RotateDrawable)
              ldRespondSlotBg.findDrawableByLayerId(R.id.drRespondSlotBg))
@@ -285,6 +305,7 @@ public class StreamActivity
         dgStream = (GradientDrawable) ivBottomGradient.getDrawable();
 
         tvRespondIcon = (TextView) findViewById(R.id.tvRespondIcon);
+        tvRespondIcon.setOnClickListener(this);
         ivRespondSlotFg = (ImageView) findViewById(R.id.ivRespondSlotFg);
         dgRespondSlotFg = (GradientDrawable)
             ((RotateDrawable)
@@ -321,12 +342,14 @@ public class StreamActivity
                                 tvDescription.getHeight(), tvDescription.getX(),
                                 tvDescription.getY()));
             changeColor(Palette.getColor(streamItem.getColorName()));
+            if (currentType != streamItem.getType())
+                setType(streamItem.getType());
         }
     }
 
     void changeColor(Palette.COLOR color) {
         Resources rsrc = getResources();
-        int lightColor = rsrc.getColor(color.light);
+       int lightColor = rsrc.getColor(color.light);
         int mediumColor = rsrc.getColor(color.medium);
         int darkColor = rsrc.getColor(color.dark);
         Log.d("DEBUG", "Change color to " + color +
@@ -340,10 +363,38 @@ public class StreamActivity
         // flRespond;  // will need the message to be passed along
 
         tvRespondIcon.setTextColor(lightColor);
-        dgRespondSlotFg.setColor(mediumColor);
-        dgRespondSlotBg.setColor(mediumColor);
+        dgRespondSlotFg.setColor(lightColor);
+        dgRespondSlotBg.setColor(lightColor);
         // doesn't work :-(
         // dgRespondSlot.setStroke(4, darkColor);
+    }
+
+    void setType(Stream.Type type) {
+        currentType = type;
+        Log.d("DEBUG", "Set type to " + type);
+        int size = Math.round(28*dp);
+        switch (type) {
+        case PROJECT:
+            tvRespondIcon.setText(R.string.symbol_clam);
+            tvRespondIcon.setBackgroundResource(R.drawable.coin_bg);
+            tvRespondIcon.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
+            break;
+        case EVENT:
+            tvRespondIcon.setText(R.string.icon_rsvp);
+            tvRespondIcon.setBackgroundResource(R.drawable.envelope);
+            tvRespondIcon.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 10);
+            size = ViewGroup.LayoutParams.WRAP_CONTENT;
+            break;
+        }
+
+        RelativeLayout.LayoutParams lpRespondIcon =
+            new RelativeLayout.LayoutParams(size, size);
+        lpRespondIcon.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        lpRespondIcon.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        int _20dp = Math.round(20 * dp);
+        lpRespondIcon.setMargins(0, 0, _20dp, _20dp);
+        tvRespondIcon.setLayoutParams(lpRespondIcon);
+        //tvRespondIcon.postInvalidate();
     }
 
     void setFadeIn() {
@@ -374,15 +425,15 @@ public class StreamActivity
                        //position, velocity, acceleration, distance));
         //int width = tvSubtitle.getWidth();
         tvTitle.setTranslationX
-            ( -distance * (tvTitle.getWidth() + 40) );
+            ( -distance * (tvTitle.getWidth() + 20 * 20) );
 
-        int slotMoves = 50;
+        float slotMoves = 30f * dp;
         ivRespondSlotFg.setTranslationX(distance * slotMoves);
         ivRespondSlotFg.setTranslationY(distance * slotMoves);
         ivRespondSlotBg.setTranslationX(distance * slotMoves);
         ivRespondSlotBg.setTranslationY(distance * slotMoves);
 
-        int iconMoves = 100;
+        float iconMoves = 50f * dp;
         tvRespondIcon.setTranslationX(distance * iconMoves);
         tvRespondIcon.setTranslationY(-distance * iconMoves);
 
@@ -397,5 +448,63 @@ public class StreamActivity
     }
     public void onLoading() {
         loaded = false;
+    }
+
+    private boolean fragmentActive = false;
+
+    @Override
+    public void onClick(View v) {
+        Log.d("DEBUG", "onClick(" + v + ")");
+        if ((v == tvRespondIcon) || (v == ivRespondSlotBg)) {
+            animateRespondButton(!fragmentActive);
+            if (!fragmentActive)
+                activateRespondFragment();
+            else
+                detachRespondFragment();
+        }
+        else {
+            Log.d("DEBUG", "Not Respond.");
+        }
+    }
+
+    void animateRespondButton(boolean activating) {
+        Log.d("DEBUG", "Respond button to " + activating);
+        AnimatorSet set = new AnimatorSet();
+        float start = activating ? 0f : 20f*dp;
+        float end = activating ? 20f : 0f*dp;
+        set.playTogether
+            (ObjectAnimator.ofFloat
+             (tvRespondIcon, "translationX", start, end)
+             .setDuration(250),
+             ObjectAnimator.ofFloat
+             (tvRespondIcon, "translationY", start, end)
+             .setDuration(250)
+             );
+        set.start();
+    }
+
+    void detachRespondFragment() {
+        Log.d("DEBUG", "Detaching response fragment.");
+        FragmentTransaction ft = getSupportFragmentManager()
+            .beginTransaction();
+        ft.setCustomAnimations(R.anim.flick_up, R.anim.flick_down);
+        ft.remove(respondFragment);
+        ft.commit();
+        respondFragment = null;
+        fragmentActive = false;
+    }
+
+    void activateRespondFragment() {
+        FragmentTransaction ft = getSupportFragmentManager()
+            .beginTransaction();
+        ft.setCustomAnimations(R.anim.flick_up, R.anim.flick_down);
+        Stream item = streamAdapter.getItem((int)currentEntry);
+        Log.d("DEBUG", "Creating RespondFragment");
+        respondFragment = new RespondFragment(item);
+        Log.d("DEBUG", "Attaching RespondFragment");
+        ft.replace(R.id.flRespond, respondFragment);
+        ft.commit();
+        Log.d("DEBUG", "Committing new RespondFragment");
+        fragmentActive = true;
     }
 }

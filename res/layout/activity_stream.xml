@@ -18,7 +18,6 @@
      android:layout_alignParentTop="true"
      android:layout_alignParentLeft="true"
      android:layout_marginTop="32dp"
-     android:layout_marginLeft="20dp"
      style="@style/stream_title"
      />
 
@@ -48,7 +47,6 @@
      android:layout_alignParentBottom="true"
      android:layout_alignParentLeft="true"
      android:layout_marginBottom="160dp"
-     android:layout_marginLeft="20dp"
      style="@style/stream_title"
      />
 
@@ -65,10 +63,10 @@
 
   <FrameLayout
      android:id="@+id/flRespond"
-     android:layout_height="wrap_content"
-     android:layout_width="wrap_content"
-     android:layout_alignParentRight="true"
-     android:layout_alignParentBottom="true"
+     android:layout_height="match_parent"
+     android:layout_width="match_parent"
+     android:layout_alignParentTop="true"
+     android:layout_alignParentLeft="true"
      />
 
   <ImageView

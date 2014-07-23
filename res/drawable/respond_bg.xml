@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
-  <item>
-    <shape android:shape="rectangle" >
-      <solid color="@color/peru"/>
-    </shape>
-  </item>
-  <item>
-    <clip>
-      <rotate
-         android:fromDegrees="45"
-         android:toDegrees="0"
-         android:pivotX="0%"
-         android:pivotY="100%">
-        <shape android:shape="rectangle">
-          <size width="160dp" height="160dp"/>
-        </shape>
-      </rotate>
-    </clip>
+  <item
+     android:id="@+id/drRespondBg"
+     android:top="-400dp"
+     android:left="0dp"
+     android:right="-400dp"
+     android:bottom="-400dp"
+     >
+    <rotate
+       android:fromDegrees="45"
+       android:toDegrees="45"
+       android:pivotX="0%"
+       android:pivotY="50%">
+      <shape android:shape="rectangle">
+        <solid android:color="@color/peru"/>
+        <!-- <size android:width="226dp" android:height="226dp"/> -->
+      </shape>
+    </rotate>
   </item>
 </layer-list>

@@ -57,8 +57,12 @@
 
     <string name="copy_rsvp_promise">WE\'LL SIGN YOU UP!</string>
 
-    <string name="field_enter">ENTER YOUR</string>
+    <string name="field_enter">WHAT\'S YOUR</string>
+    <string name="hint_email">E-MAIL?</string>
     <string name="cta_rsvp">SUBMIT</string>
 
     <string name="title_stream">Asha</string>
+
+    <string name="symbol_clam">$</string>
+    <string name="icon_rsvp">RSVP</string>
 </resources>

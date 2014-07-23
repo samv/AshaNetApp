@@ -19,7 +19,7 @@
       <item name="android:titleTextStyle">@style/AshaActionBar.TitleTextStyle</item>
       <item name="android:background">@color/burlywood1</item>
       <item name="android:backgroundStacked">@color/moccasin</item>
-      <item name="android:height">0dp</item>
+      <!-- <item name="android:height">0dp</item> -->
     </style>
 
     <style name="AshaActionBar.TitleTextStyle"
@@ -217,30 +217,27 @@
     <style name="donate_amount" parent="title">
       <item name="android:textColor">@color/chalk</item>
       <item name="android:textSize">22sp</item>
-      <item name="android:background">@color/peru</item>
     </style>
 
     <style name="donate_subtitle" parent="title">
       <item name="android:textColor">@color/coral</item>
-      <item name="android:background">@color/peru</item>
       <item name="android:textSize">18sp</item>
     </style>
 
     <style name="donate_fineprint" parent="micro">
       <item name="android:textColor">@color/chalk</item>
-      <item name="android:background">@color/peru</item>
     </style>
 
     <!-- 'rsvp' overlay fragment -->
     <style name="rsvp_title" parent="title">
       <item name="android:textColor">@color/mediumvioletred</item>
-      <item name="android:background">@color/maroon</item>
+      <item name="android:textSize">22sp</item>
     </style>
 
     <style name="rsvp_edit" parent="android:Widget.EditText">
       <item name="android:textColor">@color/chalk</item>
-      <item name="fontPath">Cocogoose.ttf</item>
-      <item name="android:background">@color/maroon</item>
+      <item name="fontPath">Gotham-Black.ttf</item>
+      <item name="android:textSize">22sp</item>
       <item name="android:paddingTop">8dp</item>
       <item name="android:paddingBottom">8dp</item>
       <item name="android:paddingLeft">20dp</item>

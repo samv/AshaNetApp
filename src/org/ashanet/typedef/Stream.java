@@ -14,6 +14,8 @@ public class Stream extends ParseObject {
         super();
     }
 
+    public enum Type { EVENT, PROJECT };
+
     public String getTitle() { return getString("Title"); }
     public String getSubtitle() { return getString("Subtitle"); }
     public String getDescription() { return getString("Description"); }
@@ -27,4 +29,8 @@ public class Stream extends ParseObject {
     public String getProjectTypeId() { return getString("ProjectTypeId"); }
     public String getEventId() { return getString("EventId"); }
     public String getImageId() { return getString("ImageId"); }
+
+    public Type getType() {
+        return (getProjectId() == null ? Type.EVENT : Type.PROJECT);
+    }
 }
