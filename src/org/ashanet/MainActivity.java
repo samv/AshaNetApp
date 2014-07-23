@@ -81,14 +81,14 @@ public class MainActivity
              //android.R.layout.simple_spinner_dropdown_item);
         //actionBar.setListNavigationCallbacks(mSpinnerAdapter, this);
 
+        Log.d("DEBUG", "Hiding Action bar");
+        actionBar.hide();
         fragTitles = new ArrayList<String>();
         Log.d("DEBUG", "Nav Drawer!");
         setupNavDrawer();
         Log.d("DEBUG", "Nav Drawer Done!");
         typeMaps = ((AshaNetApp)getApplication()).typeMaps;
-        Intent i = new Intent(this, StreamActivity.class);
-        startActivity(i);
-        //chooseFragment(getLoadingFragment(), 0);
+        chooseFragment(getLoadingFragment(), 0);
     }
 
     private void setupNavDrawer() {
@@ -144,6 +144,13 @@ public class MainActivity
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
         mDrawerToggle.syncState();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("DEBUG", "Showing ActionBar in onRestart");
+        actionBar.show();
     }
 
     @Override
@@ -249,7 +256,9 @@ public class MainActivity
         // fragment by tag, perhaps this could keep popping until it
         // finds it.
         if (currentFragment == loadingFragment) {
-            //chooseFragment(getProjectsFragment(), 0);
+            chooseFragment(getProjectsFragment(), 0);
+            Intent i = new Intent(this, StreamActivity.class);
+            startActivity(i);
         }
         else {
             getSupportFragmentManager().popBackStack();
