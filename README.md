@@ -28,7 +28,7 @@ equivalence with https://github.com/sagpatil/AshaNet_iOS
 
   * ☐ As an administrator, I can create and edit projects (#11)
 
-So far, the development of this Android app has taken about 11 hours.
+So far, the development of this Android app has taken about 60 hours.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
